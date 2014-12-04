@@ -17,6 +17,7 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
     /**
      * Creates new form UdvælgValgfag2GUI
      */
+    
     ArrayList<String> valgfag;
     DefaultListModel model1;
     DefaultListModel model2;
