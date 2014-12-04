@@ -5,6 +5,7 @@
  */
 package gui;
 
+import controller.Controller;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 
@@ -17,31 +18,17 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
     /**
      * Creates new form UdvælgValgfag2GUI
      */
-    
-    ArrayList<String> valgfag;
-    DefaultListModel model1;
-    DefaultListModel model2;
-    DefaultListModel model3;
+    Controller controller;
+    DefaultListModel modelValgFag;
+    DefaultListModel modelPuljeA;
+    DefaultListModel modelPuljeB;
 
-    public UdvælgValgfag2GUI() {
+    public UdvælgValgfag2GUI()
+    {
         initComponents();
-        valgfag = new ArrayList();
+        controller = new Controller();
+        forberedLister();
 
-        valgfag.add("C#");
-        valgfag.add("Android");
-        valgfag.add("Python");
-        valgfag.add("Dansk");
-
-        model1 = new DefaultListModel();
-        model2 = new DefaultListModel();
-        model3 = new DefaultListModel();
-        jListValgteValgfag.setModel(model1);
-        jListPuljeA.setModel(model2);
-        jListPuljeB.setModel(model3);
-
-        for (String fag : valgfag) {
-            model1.addElement(fag);
-        }
     }
 
     /**
@@ -53,7 +40,6 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jListValgteValgfag = new javax.swing.JList();
         jLabel1 = new javax.swing.JLabel();
@@ -72,8 +58,6 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
         jButtonBeregn = new javax.swing.JButton();
         jButtonBackTilValgfag = new javax.swing.JButton();
         jButtonGem = new javax.swing.JButton();
-
-        jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -230,88 +214,90 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonTilAPuljeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTilAPuljeActionPerformed
-        Object valgteFag = jListValgteValgfag.getSelectedValue();
-        boolean fundet = model1.removeElement(valgteFag);
-        if (fundet) {
-            model2.addElement(valgteFag);
-        }
+        controller.flytFag(jListValgteValgfag.getSelectedValue(), modelValgFag, modelPuljeA);
     }//GEN-LAST:event_jButtonTilAPuljeActionPerformed
 
     private void jButtonTilPuljeBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTilPuljeBActionPerformed
-        Object valgteFag = jListValgteValgfag.getSelectedValue();
-        boolean fundet = model1.removeElement(valgteFag);
-        if (fundet) {
-            model3.addElement(valgteFag);
-        }
+        controller.flytFag(jListValgteValgfag.getSelectedValue(), modelValgFag, modelPuljeB);
     }//GEN-LAST:event_jButtonTilPuljeBActionPerformed
 
     private void jButtonATilBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonATilBActionPerformed
-        Object valgteFag = jListPuljeA.getSelectedValue();
-        boolean fundet = model2.removeElement(valgteFag);
-        if (fundet) {
-            model3.addElement(valgteFag);
-        }
+        controller.flytFag(jListPuljeA.getSelectedValue(), modelPuljeA, modelPuljeB);
     }//GEN-LAST:event_jButtonATilBActionPerformed
 
     private void jButtonBTilAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBTilAActionPerformed
-        Object valgteFag = jListPuljeB.getSelectedValue();
-        boolean fundet = model3.removeElement(valgteFag);
-        if (fundet) {
-            model2.addElement(valgteFag);
-        }
+        controller.flytFag(jListPuljeB.getSelectedValue(), modelPuljeB, modelPuljeA);
     }//GEN-LAST:event_jButtonBTilAActionPerformed
 
     private void jButtonBackTilValgfagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackTilValgfagActionPerformed
-        Object valgteFagIB = jListPuljeB.getSelectedValue();
-        boolean fundetIB = model3.removeElement(valgteFagIB);
-        Object valgteFagIA = jListPuljeA.getSelectedValue();
-        boolean fundetIA = model2.removeElement(valgteFagIA);
-        
-        if (fundetIB) {
-            model1.addElement(valgteFagIB);
-        }
-        else if(fundetIA){
-            model1.addElement(valgteFagIA);
+        if (jListPuljeB.getSelectedValue() != null)
+        {
+            controller.flytFag(jListPuljeB.getSelectedValue(), modelPuljeB, modelValgFag);
+        } else if (jListPuljeA.getSelectedValue() != null)
+        {
+            controller.flytFag(jListPuljeA.getSelectedValue(), modelPuljeA, modelValgFag);
         }
     }//GEN-LAST:event_jButtonBackTilValgfagActionPerformed
 
+    private void forberedLister(){          
+        modelValgFag = new DefaultListModel();
+        modelPuljeA = new DefaultListModel();
+        modelPuljeB = new DefaultListModel();
+        jListValgteValgfag.setModel(modelValgFag);
+        jListPuljeA.setModel(modelPuljeA);
+        jListPuljeB.setModel(modelPuljeB);
+        
+        ArrayList valgfag = controller.hentValgfagFraDB();
+        for (Object fag : valgfag)
+        {
+            modelValgFag.addElement(fag);
+        }
+    }
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[])
+    {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+        try
+        {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
+            {
+                if ("Nimbus".equals(info.getName()))
+                {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException ex)
+        {
             java.util.logging.Logger.getLogger(UdvælgValgfag2GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
+        } catch (InstantiationException ex)
+        {
             java.util.logging.Logger.getLogger(UdvælgValgfag2GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
+        } catch (IllegalAccessException ex)
+        {
             java.util.logging.Logger.getLogger(UdvælgValgfag2GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex)
+        {
             java.util.logging.Logger.getLogger(UdvælgValgfag2GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+            public void run()
+            {
                 new UdvælgValgfag2GUI().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonATilB;
     private javax.swing.JButton jButtonBTilA;
     private javax.swing.JButton jButtonBackTilValgfag;
