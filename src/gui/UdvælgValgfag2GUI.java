@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package gui;
+
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 
 /**
  *
@@ -15,8 +17,30 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
     /**
      * Creates new form UdvælgValgfag2GUI
      */
+    ArrayList<String> valgfag;
+    DefaultListModel model1;
+    DefaultListModel model2;
+    DefaultListModel model3;
+
     public UdvælgValgfag2GUI() {
         initComponents();
+        valgfag = new ArrayList();
+
+        valgfag.add("C#");
+        valgfag.add("Android");
+        valgfag.add("Python");
+        valgfag.add("Dansk");
+
+        model1 = new DefaultListModel();
+        model2 = new DefaultListModel();
+        model3 = new DefaultListModel();
+        jListValgteValgfag.setModel(model1);
+        jListPuljeA.setModel(model2);
+        jListPuljeB.setModel(model3);
+
+        for (String fag : valgfag) {
+            model1.addElement(fag);
+        }
     }
 
     /**
@@ -28,6 +52,7 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jListValgteValgfag = new javax.swing.JList();
         jLabel1 = new javax.swing.JLabel();
@@ -42,9 +67,12 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
         jButtonATilB = new javax.swing.JButton();
         jButtonBTilA = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jTextAreaTilfredshed = new javax.swing.JTextArea();
         jButtonBeregn = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        jButtonBackTilValgfag = new javax.swing.JButton();
+        jButtonGem = new javax.swing.JButton();
+
+        jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,20 +104,47 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
         jLabel3.setText("Pulje B");
 
         jButtonTilAPulje.setText(">> Pulje A");
+        jButtonTilAPulje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTilAPuljeActionPerformed(evt);
+            }
+        });
 
         jButtonTilPuljeB.setText(">> Pulje B");
+        jButtonTilPuljeB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTilPuljeBActionPerformed(evt);
+            }
+        });
 
         jButtonATilB.setText(">");
+        jButtonATilB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonATilBActionPerformed(evt);
+            }
+        });
 
         jButtonBTilA.setText("<");
+        jButtonBTilA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBTilAActionPerformed(evt);
+            }
+        });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane4.setViewportView(jTextArea1);
+        jTextAreaTilfredshed.setColumns(20);
+        jTextAreaTilfredshed.setRows(5);
+        jScrollPane4.setViewportView(jTextAreaTilfredshed);
 
         jButtonBeregn.setText("Beregn Utilfredshed");
 
-        jButton6.setText("OK");
+        jButtonBackTilValgfag.setText("<<");
+        jButtonBackTilValgfag.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBackTilValgfagActionPerformed(evt);
+            }
+        });
+
+        jButtonGem.setText("Gem");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -98,9 +153,9 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButtonGem)
                     .addComponent(jButtonBeregn)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 613, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
@@ -112,23 +167,25 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButtonTilAPulje)
                             .addComponent(jButtonTilPuljeB))
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonBTilA)
-                            .addComponent(jButtonATilB))
-                        .addGap(18, 18, 18)
+                                .addComponent(jLabel2)
+                                .addGap(163, 163, 163))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jButtonBTilA, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButtonATilB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jButtonBackTilValgfag))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(20, Short.MAX_VALUE))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(27, 27, 27)))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,7 +196,9 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
                         .addGap(87, 87, 87)
                         .addComponent(jButtonATilB)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonBTilA))
+                        .addComponent(jButtonBTilA)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonBackTilValgfag))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(90, 90, 90)
                         .addComponent(jButtonTilAPulje)
@@ -161,13 +220,59 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
                 .addComponent(jButtonBeregn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton6)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonGem)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonTilAPuljeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTilAPuljeActionPerformed
+        Object valgteFag = jListValgteValgfag.getSelectedValue();
+        boolean fundet = model1.removeElement(valgteFag);
+        if (fundet) {
+            model2.addElement(valgteFag);
+        }
+    }//GEN-LAST:event_jButtonTilAPuljeActionPerformed
+
+    private void jButtonTilPuljeBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTilPuljeBActionPerformed
+        Object valgteFag = jListValgteValgfag.getSelectedValue();
+        boolean fundet = model1.removeElement(valgteFag);
+        if (fundet) {
+            model3.addElement(valgteFag);
+        }
+    }//GEN-LAST:event_jButtonTilPuljeBActionPerformed
+
+    private void jButtonATilBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonATilBActionPerformed
+        Object valgteFag = jListPuljeA.getSelectedValue();
+        boolean fundet = model2.removeElement(valgteFag);
+        if (fundet) {
+            model3.addElement(valgteFag);
+        }
+    }//GEN-LAST:event_jButtonATilBActionPerformed
+
+    private void jButtonBTilAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBTilAActionPerformed
+        Object valgteFag = jListPuljeB.getSelectedValue();
+        boolean fundet = model3.removeElement(valgteFag);
+        if (fundet) {
+            model2.addElement(valgteFag);
+        }
+    }//GEN-LAST:event_jButtonBTilAActionPerformed
+
+    private void jButtonBackTilValgfagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackTilValgfagActionPerformed
+        Object valgteFagIB = jListPuljeB.getSelectedValue();
+        boolean fundetIB = model3.removeElement(valgteFagIB);
+        Object valgteFagIA = jListPuljeA.getSelectedValue();
+        boolean fundetIA = model2.removeElement(valgteFagIA);
+        
+        if (fundetIB) {
+            model1.addElement(valgteFagIB);
+        }
+        else if(fundetIA){
+            model1.addElement(valgteFagIA);
+        }
+    }//GEN-LAST:event_jButtonBackTilValgfagActionPerformed
 
     /**
      * @param args the command line arguments
@@ -205,10 +310,12 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonATilB;
     private javax.swing.JButton jButtonBTilA;
+    private javax.swing.JButton jButtonBackTilValgfag;
     private javax.swing.JButton jButtonBeregn;
+    private javax.swing.JButton jButtonGem;
     private javax.swing.JButton jButtonTilAPulje;
     private javax.swing.JButton jButtonTilPuljeB;
     private javax.swing.JLabel jLabel1;
@@ -221,6 +328,6 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextAreaTilfredshed;
     // End of variables declaration//GEN-END:variables
 }

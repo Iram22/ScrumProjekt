@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.JButton" name="jButton1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jButton1"/>
+      </Properties>
+    </Component>
+  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
@@ -26,9 +33,9 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jButtonGem" min="-2" max="-2" attributes="0"/>
                   <Component id="jButtonBeregn" min="-2" max="-2" attributes="0"/>
                   <Component id="jScrollPane4" min="-2" pref="613" max="-2" attributes="0"/>
-                  <Component id="jButton6" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" attributes="0">
@@ -44,30 +51,33 @@
                           <Component id="jButtonTilAPulje" min="-2" max="-2" attributes="0"/>
                           <Component id="jButtonTilPuljeB" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="163" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
                               <Component id="jScrollPane2" min="-2" pref="138" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="jButtonBTilA" max="32767" attributes="0"/>
+                                      <Component id="jButtonATilB" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="jButtonBackTilValgfag" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jButtonBTilA" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButtonATilB" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                              <Component id="jScrollPane3" min="-2" pref="136" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="jScrollPane3" min="-2" pref="136" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="20" max="32767" attributes="0"/>
+              <EmptySpace pref="40" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -81,6 +91,8 @@
                       <Component id="jButtonATilB" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jButtonBTilA" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jButtonBackTilValgfag" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
@@ -108,9 +120,9 @@
               <Component id="jButtonBeregn" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane4" min="-2" pref="167" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jButton6" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="23" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jButtonGem" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="17" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -201,21 +213,33 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="&gt;&gt; Pulje A"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonTilAPuljeActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonTilPuljeB">
       <Properties>
         <Property name="text" type="java.lang.String" value="&gt;&gt; Pulje B"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonTilPuljeBActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonATilB">
       <Properties>
         <Property name="text" type="java.lang.String" value="&gt;"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonATilBActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonBTilA">
       <Properties>
         <Property name="text" type="java.lang.String" value="&lt;"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonBTilAActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane4">
       <AuxValues>
@@ -224,7 +248,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextArea" name="jTextArea1">
+        <Component class="javax.swing.JTextArea" name="jTextAreaTilfredshed">
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
@@ -237,9 +261,17 @@
         <Property name="text" type="java.lang.String" value="Beregn Utilfredshed"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton6">
+    <Component class="javax.swing.JButton" name="jButtonBackTilValgfag">
       <Properties>
-        <Property name="text" type="java.lang.String" value="OK"/>
+        <Property name="text" type="java.lang.String" value="&lt;&lt;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonBackTilValgfagActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonGem">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Gem"/>
       </Properties>
     </Component>
   </SubComponents>
