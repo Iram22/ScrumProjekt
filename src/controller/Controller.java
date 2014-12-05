@@ -19,13 +19,14 @@ public class Controller {
 
     }
 
-    public void flytFag(Object valgteFag, DefaultListModel modelFra, DefaultListModel modelTil)
+    public boolean flytFag(Object valgteFag, DefaultListModel modelFra, DefaultListModel modelTil)
     {
         boolean fundet = modelFra.removeElement(valgteFag);
         if (fundet)
         {
             modelTil.addElement(valgteFag);
         }
+        return fundet;
     }
 
     public ArrayList hentValgfagFraDB()
