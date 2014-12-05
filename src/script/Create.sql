@@ -24,6 +24,18 @@ Create TABLE første_runde(
 );
 
 
+Create TABLE pulje_A(
+ valgfagId INTEGER NOT NULL REFERENCES valgfag(id),
+ PRIMARY KEY(valgfagId)
+);
+
+Create TABLE pulje_B(
+ valgfagId INTEGER NOT NULL REFERENCES valgfag(id),
+PRIMARY KEY(valgfagId)
+);
+
+
+
 
 
 
