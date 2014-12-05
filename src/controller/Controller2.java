@@ -11,6 +11,8 @@ import entity.Valgfag;
 import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -20,14 +22,16 @@ import javax.persistence.Query;
  */
 public class Controller2 {
     
-    @PersistenceContext(unitName = "XPScrumProjektPU")
+    @PersistenceContext(unitName = "ValgfagDBPU")
     private EntityManager em;
-    
+
     
     public ArrayList<ValgfagResultat> visResultat()
     {
+        em=Persistence.createEntityManagerFactory("ValgfagDBPU").createEntityManager();
+        System.out.println(em);
         Query query = em.createNamedQuery("Valgfag.findAll");
-        Query query2 = em.createNamedQuery("FørsteRunde.findCount");
+        Query query2 = em.createNamedQuery("F\u00f8rsteRunde.findAll");
         ArrayList<ValgfagResultat> resultater = new ArrayList<>();
         Collection<Valgfag> valgfag = query.getResultList();
         
