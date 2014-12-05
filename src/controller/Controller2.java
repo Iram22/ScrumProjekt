@@ -31,7 +31,7 @@ public class Controller2 {
         em=Persistence.createEntityManagerFactory("ValgfagDBPU").createEntityManager();
         System.out.println(em);
         Query query = em.createNamedQuery("Valgfag.findAll");
-        Query query2 = em.createNamedQuery("F\u00f8rsteRunde.findAll");
+        Query query2 = em.createNamedQuery("FørsteRunde.findCount");
         ArrayList<ValgfagResultat> resultater = new ArrayList<>();
         Collection<Valgfag> valgfag = query.getResultList();
         
