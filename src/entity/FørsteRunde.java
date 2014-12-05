@@ -21,115 +21,136 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Iram
+ * @author Ahmed
  */
 @Entity
 @Table(name = "F\u00d8RSTE_RUNDE")
 @XmlRootElement
-@NamedQueries({
+@NamedQueries(
+{
     @NamedQuery(name = "F\u00f8rsteRunde.findAll", query = "SELECT f FROM F\u00f8rsteRunde f"),
-    @NamedQuery(name = "F\u00f8rsteRunde.findByStudentid", query = "SELECT f FROM F\u00f8rsteRunde f WHERE f.studentid = :studentid")})
-    @NamedQuery(name = "FørsteRunde.findCount", query = "Select distinct((Select count(første_prioritetA) from første_runde where første_prioritetA = :første_prioritetA )+ (Select count(første_prioritetB) from første_runde where første_prioritetB = :første_prioritetA)) from første_runde")
+    @NamedQuery(name = "F\u00f8rsteRunde.findByStudentid", query = "SELECT f FROM F\u00f8rsteRunde f WHERE f.studentid = :studentid"),
+    //@NamedQuery(name = "FørsteRunde.findCount", query = "Select ((Select count(f.første_prioritetA) from første_runde f where f.første_prioritetA = :første_prioritetA )+ (Select count(f.første_prioritetB) from første_runde f where f.første_prioritetB = :første_prioritetA)) from første_runde")
 
+})
 public class FørsteRunde implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "STUDENTID")
     private Integer studentid;
-    @JoinColumn(name = "F\u00d8RSTE_PRIORITETA", referencedColumnName = "ID")
-    @ManyToOne
-    private Valgfag førstePrioriteta;
-    @JoinColumn(name = "ANDEN_PRIORITETA", referencedColumnName = "ID")
-    @ManyToOne
-    private Valgfag andenPrioriteta;
-    @JoinColumn(name = "F\u00d8RSTE_PRIORITETB", referencedColumnName = "ID")
-    @ManyToOne
-    private Valgfag førstePrioritetb;
-    @JoinColumn(name = "ANDEN_PRIORITETB", referencedColumnName = "ID")
-    @ManyToOne
-    private Valgfag andenPrioritetb;
     @JoinColumn(name = "STUDENTID", referencedColumnName = "ID", insertable = false, updatable = false)
     @OneToOne(optional = false)
     private Student student;
+    @JoinColumn(name = "ANDEN_PRIORITETB", referencedColumnName = "ID")
+    @ManyToOne
+    private Valgfag andenPrioritetb;
+    @JoinColumn(name = "F\u00d8RSTE_PRIORITETB", referencedColumnName = "ID")
+    @ManyToOne
+    private Valgfag førstePrioritetb;
+    @JoinColumn(name = "ANDEN_PRIORITETA", referencedColumnName = "ID")
+    @ManyToOne
+    private Valgfag andenPrioriteta;
+    @JoinColumn(name = "F\u00d8RSTE_PRIORITETA", referencedColumnName = "ID")
+    @ManyToOne
+    private Valgfag førstePrioriteta;
 
-    public FørsteRunde() {
+    public FørsteRunde()
+    {
     }
 
-    public FørsteRunde(Integer studentid) {
+    public FørsteRunde(Integer studentid)
+    {
         this.studentid = studentid;
     }
 
-    public Integer getStudentid() {
+    public Integer getStudentid()
+    {
         return studentid;
     }
 
-    public void setStudentid(Integer studentid) {
+    public void setStudentid(Integer studentid)
+    {
         this.studentid = studentid;
     }
 
-    public Valgfag getFørstePrioriteta() {
-        return førstePrioriteta;
-    }
-
-    public void setFørstePrioriteta(Valgfag førstePrioriteta) {
-        this.førstePrioriteta = førstePrioriteta;
-    }
-
-    public Valgfag getAndenPrioriteta() {
-        return andenPrioriteta;
-    }
-
-    public void setAndenPrioriteta(Valgfag andenPrioriteta) {
-        this.andenPrioriteta = andenPrioriteta;
-    }
-
-    public Valgfag getFørstePrioritetb() {
-        return førstePrioritetb;
-    }
-
-    public void setFørstePrioritetb(Valgfag førstePrioritetb) {
-        this.førstePrioritetb = førstePrioritetb;
-    }
-
-    public Valgfag getAndenPrioritetb() {
-        return andenPrioritetb;
-    }
-
-    public void setAndenPrioritetb(Valgfag andenPrioritetb) {
-        this.andenPrioritetb = andenPrioritetb;
-    }
-
-    public Student getStudent() {
+    public Student getStudent()
+    {
         return student;
     }
 
-    public void setStudent(Student student) {
+    public void setStudent(Student student)
+    {
         this.student = student;
     }
 
+    public Valgfag getAndenPrioritetb()
+    {
+        return andenPrioritetb;
+    }
+
+    public void setAndenPrioritetb(Valgfag andenPrioritetb)
+    {
+        this.andenPrioritetb = andenPrioritetb;
+    }
+
+    public Valgfag getFørstePrioritetb()
+    {
+        return førstePrioritetb;
+    }
+
+    public void setFørstePrioritetb(Valgfag førstePrioritetb)
+    {
+        this.førstePrioritetb = førstePrioritetb;
+    }
+
+    public Valgfag getAndenPrioriteta()
+    {
+        return andenPrioriteta;
+    }
+
+    public void setAndenPrioriteta(Valgfag andenPrioriteta)
+    {
+        this.andenPrioriteta = andenPrioriteta;
+    }
+
+    public Valgfag getFørstePrioriteta()
+    {
+        return førstePrioriteta;
+    }
+
+    public void setFørstePrioriteta(Valgfag førstePrioriteta)
+    {
+        this.førstePrioriteta = førstePrioriteta;
+    }
+
     @Override
-    public int hashCode() {
+    public int hashCode()
+    {
         int hash = 0;
         hash += (studentid != null ? studentid.hashCode() : 0);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
+    public boolean equals(Object object)
+    {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof FørsteRunde)) {
+        if (!(object instanceof FørsteRunde))
+        {
             return false;
         }
         FørsteRunde other = (FørsteRunde) object;
-        if ((this.studentid == null && other.studentid != null) || (this.studentid != null && !this.studentid.equals(other.studentid))) {
+        if ((this.studentid == null && other.studentid != null) || (this.studentid != null && !this.studentid.equals(other.studentid)))
+        {
             return false;
         }
         return true;
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "entity.F\u00f8rsteRunde[ studentid=" + studentid + " ]";
     }
     
