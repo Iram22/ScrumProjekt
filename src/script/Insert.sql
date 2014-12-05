@@ -23,6 +23,3 @@ INSERT into første_runde values (3, 1, 3, 5, 2);
 INSERT into første_runde values (4, 3, 4, 5, 1);
 INSERT into første_runde values (5, 2, 1, 4, 5);
 
-
-
-

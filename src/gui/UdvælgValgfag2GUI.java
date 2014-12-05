@@ -6,6 +6,7 @@
 package gui;
 
 import controller.Controller;
+import controller.Controller2;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 
@@ -247,7 +248,12 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
         jListPuljeA.setModel(modelPuljeA);
         jListPuljeB.setModel(modelPuljeB);
         
-        ArrayList valgfag = controller.hentValgfagFraDB();
+        Controller2 control2 = new Controller2();
+        ArrayList valgfag = control2.visResultat();
+        if(valgfag == null)
+        {
+            System.out.println("Hej");
+        }
         for (Object fag : valgfag)
         {
             modelValgFag.addElement(fag);

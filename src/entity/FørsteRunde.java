@@ -29,6 +29,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "F\u00f8rsteRunde.findAll", query = "SELECT f FROM F\u00f8rsteRunde f"),
     @NamedQuery(name = "F\u00f8rsteRunde.findByStudentid", query = "SELECT f FROM F\u00f8rsteRunde f WHERE f.studentid = :studentid")})
+    @NamedQuery(name = "FørsteRunde.findCount", query = "Select distinct((Select count(første_prioritetA) from første_runde where første_prioritetA = :første_prioritetA )+ (Select count(første_prioritetB) from første_runde where første_prioritetB = :første_prioritetA)) from første_runde")
+
 public class FørsteRunde implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
