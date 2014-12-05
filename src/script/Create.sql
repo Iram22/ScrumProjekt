@@ -15,10 +15,12 @@ Create TABLE student(
 );
 
 Create TABLE første_runde(
-    id INTEGER NOT NULL PRIMARY KEY,
-    studentId INTEGER REFERENCES student(id),
-    første_prioritet INTEGER REFERENCES valgfag(id),
-    anden_prioritet INTEGER REFERENCES valgfag(id)
+    studentId INTEGER REFERENCES student(id) NOT NULL PRIMARY KEY,
+    første_prioritetA INTEGER REFERENCES valgfag(id),
+    anden_prioritetA INTEGER REFERENCES valgfag(id),
+    første_prioritetB INTEGER REFERENCES valgfag(id),
+    anden_prioritetB INTEGER REFERENCES valgfag(id)
+    
 );
 
 

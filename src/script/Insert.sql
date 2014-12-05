@@ -1,3 +1,7 @@
+DELETE from første_runde;
+DELETE from student;
+DELETE from valgfag;
+
 INSERT into valgfag values (1, 'C#');
 INSERT into valgfag values (2, 'Python');
 INSERT into valgfag values (3, 'Haskel');
@@ -13,12 +17,11 @@ INSERT into student values (6, 'Chris');
 INSERT into student values (7, 'Lida');
 
 
-INSERT into første_runde values (1, 1, 1, 3);
-INSERT into første_runde values (2, 1, 2, 4);
-INSERT into første_runde values (3, 2, 2, 5);
-INSERT into første_runde values (4, 2, 3, 4);
-INSERT into første_runde values (5, 3, 3, 2);
-INSERT into første_runde values (6, 3, 1, 4);
+INSERT into første_runde values (1, 1, 2, 3, 5);
+INSERT into første_runde values (2, 2, 4, 5, 3);
+INSERT into første_runde values (3, 1, 3, 5, 2);
+INSERT into første_runde values (4, 3, 4, 5, 1);
+INSERT into første_runde values (5, 2, 1, 4, 5);
 
 
 
