@@ -23,17 +23,19 @@ import javax.persistence.Query;
 public class Controller2 {
     
     //@PersistenceContext(unitName = "XPScrumProjektPU")
+
     private EntityManager em;
-     
+
     public ArrayList<ValgfagResultat> visResultat()
     {
+
        em = Persistence.createEntityManagerFactory("XPScrumProjektPU").createEntityManager();
        
        if(em == null)
        {
            System.out.println("i am null");
        }
-        
+
         Query query = em.createNamedQuery("Valgfag.findAll");
         Query query2 = em.createNamedQuery("FørsteRunde.findCount1");
         Query query3 = em.createNamedQuery("FørsteRunde.findCount2");

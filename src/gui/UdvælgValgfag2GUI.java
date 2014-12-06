@@ -250,6 +250,7 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
         
         Controller2 control2 = new Controller2();
         ArrayList valgfag = control2.visResultat();
+        //ArrayList valgfag = controller.hentValgfagFraDB();
         if(valgfag == null)
         {
             System.out.println("Hej");
