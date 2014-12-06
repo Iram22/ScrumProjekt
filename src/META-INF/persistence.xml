@@ -5,6 +5,8 @@
     <class>entity.Student</class>
     <class>entity.FørsteRunde</class>
     <class>entity.Valgfag</class>
+    <class>entity.PuljeA</class>
+    <class>entity.PuljeB</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/ValgfagDB"/>
       <property name="javax.persistence.jdbc.password" value="test"/>

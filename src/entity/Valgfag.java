@@ -23,17 +23,15 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Ahmed
+ * @author Iram
  */
 @Entity
 @Table(name = "VALGFAG")
 @XmlRootElement
-@NamedQueries(
-{
+@NamedQueries({
     @NamedQuery(name = "Valgfag.findAll", query = "SELECT v FROM Valgfag v"),
     @NamedQuery(name = "Valgfag.findById", query = "SELECT v FROM Valgfag v WHERE v.id = :id"),
-    @NamedQuery(name = "Valgfag.findByFag", query = "SELECT v FROM Valgfag v WHERE v.fag = :fag")
-})
+    @NamedQuery(name = "Valgfag.findByFag", query = "SELECT v FROM Valgfag v WHERE v.fag = :fag")})
 public class Valgfag implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -43,138 +41,115 @@ public class Valgfag implements Serializable {
     @Column(name = "FAG")
     private String fag;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "valgfag")
-    private PuljeA puljeA;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "valgfag")
     private PuljeB puljeB;
-    @OneToMany(mappedBy = "andenPrioritetb")
-    private Collection<FørsteRunde> førsteRundeCollection;
-    @OneToMany(mappedBy = "f\u00f8rstePrioritetb")
-    private Collection<FørsteRunde> førsteRundeCollection1;
-    @OneToMany(mappedBy = "andenPrioriteta")
-    private Collection<FørsteRunde> førsteRundeCollection2;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "valgfag")
+    private PuljeA puljeA;
     @OneToMany(mappedBy = "f\u00f8rstePrioriteta")
+    private Collection<FørsteRunde> førsteRundeCollection;
+    @OneToMany(mappedBy = "andenPrioriteta")
+    private Collection<FørsteRunde> førsteRundeCollection1;
+    @OneToMany(mappedBy = "f\u00f8rstePrioritetb")
+    private Collection<FørsteRunde> førsteRundeCollection2;
+    @OneToMany(mappedBy = "andenPrioritetb")
     private Collection<FørsteRunde> førsteRundeCollection3;
 
-    public Valgfag()
-    {
+    public Valgfag() {
     }
 
-    public Valgfag(Integer id)
-    {
+    public Valgfag(Integer id) {
         this.id = id;
     }
 
-    public Integer getId()
-    {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Integer id)
-    {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getFag()
-    {
+    public String getFag() {
         return fag;
     }
 
-    public void setFag(String fag)
-    {
+    public void setFag(String fag) {
         this.fag = fag;
     }
 
-    public PuljeA getPuljeA()
-    {
-        return puljeA;
-    }
-
-    public void setPuljeA(PuljeA puljeA)
-    {
-        this.puljeA = puljeA;
-    }
-
-    public PuljeB getPuljeB()
-    {
+    public PuljeB getPuljeB() {
         return puljeB;
     }
 
-    public void setPuljeB(PuljeB puljeB)
-    {
+    public void setPuljeB(PuljeB puljeB) {
         this.puljeB = puljeB;
     }
 
+    public PuljeA getPuljeA() {
+        return puljeA;
+    }
+
+    public void setPuljeA(PuljeA puljeA) {
+        this.puljeA = puljeA;
+    }
+
     @XmlTransient
-    public Collection<FørsteRunde> getFørsteRundeCollection()
-    {
+    public Collection<FørsteRunde> getFørsteRundeCollection() {
         return førsteRundeCollection;
     }
 
-    public void setFørsteRundeCollection(Collection<FørsteRunde> førsteRundeCollection)
-    {
+    public void setFørsteRundeCollection(Collection<FørsteRunde> førsteRundeCollection) {
         this.førsteRundeCollection = førsteRundeCollection;
     }
 
     @XmlTransient
-    public Collection<FørsteRunde> getFørsteRundeCollection1()
-    {
+    public Collection<FørsteRunde> getFørsteRundeCollection1() {
         return førsteRundeCollection1;
     }
 
-    public void setFørsteRundeCollection1(Collection<FørsteRunde> førsteRundeCollection1)
-    {
+    public void setFørsteRundeCollection1(Collection<FørsteRunde> førsteRundeCollection1) {
         this.førsteRundeCollection1 = førsteRundeCollection1;
     }
 
     @XmlTransient
-    public Collection<FørsteRunde> getFørsteRundeCollection2()
-    {
+    public Collection<FørsteRunde> getFørsteRundeCollection2() {
         return førsteRundeCollection2;
     }
 
-    public void setFørsteRundeCollection2(Collection<FørsteRunde> førsteRundeCollection2)
-    {
+    public void setFørsteRundeCollection2(Collection<FørsteRunde> førsteRundeCollection2) {
         this.førsteRundeCollection2 = førsteRundeCollection2;
     }
 
     @XmlTransient
-    public Collection<FørsteRunde> getFørsteRundeCollection3()
-    {
+    public Collection<FørsteRunde> getFørsteRundeCollection3() {
         return førsteRundeCollection3;
     }
 
-    public void setFørsteRundeCollection3(Collection<FørsteRunde> førsteRundeCollection3)
-    {
+    public void setFørsteRundeCollection3(Collection<FørsteRunde> førsteRundeCollection3) {
         this.førsteRundeCollection3 = førsteRundeCollection3;
     }
 
     @Override
-    public int hashCode()
-    {
+    public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object)
-    {
+    public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Valgfag))
-        {
+        if (!(object instanceof Valgfag)) {
             return false;
         }
         Valgfag other = (Valgfag) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)))
-        {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "entity.Valgfag[ id=" + id + " ]";
     }
     

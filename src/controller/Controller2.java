@@ -23,12 +23,10 @@ import javax.persistence.Query;
 public class Controller2 {
     
     //@PersistenceContext(unitName = "XPScrumProjektPU")
-
     private EntityManager em;
 
     public ArrayList<ValgfagResultat> visResultat()
     {
-
        em = Persistence.createEntityManagerFactory("XPScrumProjektPU").createEntityManager();
        
        if(em == null)
