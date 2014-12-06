@@ -6,27 +6,29 @@
 
 package dto;
 
+import entity.Valgfag;
+
 /**
  *
  * @author Dino Kalember
  */
 public class ValgfagResultat {
-    String fagnavn;
+    Valgfag fag;
     int priotet1;
     int priotet2;
 
-    public ValgfagResultat(String fagnavn, int priotet1, int priotet2) {
-        this.fagnavn = fagnavn;
+    public ValgfagResultat(Valgfag fag, int priotet1, int priotet2) {
+        this.fag = fag;
         this.priotet1 = priotet1;
         this.priotet2 = priotet2;
     }
 
-    public String getFagnavn() {
-        return fagnavn;
+    public Valgfag getFag() {
+        return fag;
     }
 
-    public void setFagnavn(String fagnavn) {
-        this.fagnavn = fagnavn;
+    public void setFagnavn(Valgfag fag) {
+        this.fag = fag;
     }
 
     public int getPriotet1() {
@@ -44,5 +46,12 @@ public class ValgfagResultat {
     public void setPriotet2(int priotet2) {
         this.priotet2 = priotet2;
     }
+
+    @Override
+    public String toString() {
+        return fag.getFag() + ", " + priotet1 + ", " + priotet2;
+    }
+    
+    
     
 }
