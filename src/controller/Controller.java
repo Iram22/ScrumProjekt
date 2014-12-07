@@ -39,5 +39,5 @@ public class Controller {
 
         return valgfag;
     }
-
+    
 }
