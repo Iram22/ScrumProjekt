@@ -42,14 +42,14 @@ public class Controller3 {
           Object[] puljeB = pulje_B.toArray();
           
         final int MAX_UTILFREDSHED = 4;
-        int utilfredshedsGrad = 0;
-        int valgIpuljeA = 0;
-        int valgIpuljeB = 0;
+        
         HashMap utilfredseStudenter = new HashMap();
         FørsteRunde runde1;
         for(Student stud : students){
             runde1 = stud.getFørsteRunde();
-            
+            int utilfredshedsGrad = 0;
+            int valgIpuljeA = 0;
+            int valgIpuljeB = 0;
              // prioritet 1a
             if(!erIpuljen(runde1.getFørstePrioriteta().getFag(), puljeA)) // tjek om prioritet 1a er i pulje a
             {
