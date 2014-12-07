@@ -20,15 +20,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Iram
+ * @author Ahmed
  */
 @Entity
 @Table(name = "STUDENT")
 @XmlRootElement
-@NamedQueries({
+@NamedQueries(
+{
     @NamedQuery(name = "Student.findAll", query = "SELECT s FROM Student s"),
     @NamedQuery(name = "Student.findById", query = "SELECT s FROM Student s WHERE s.id = :id"),
-    @NamedQuery(name = "Student.findByNavn", query = "SELECT s FROM Student s WHERE s.navn = :navn")})
+    @NamedQuery(name = "Student.findByNavn", query = "SELECT s FROM Student s WHERE s.navn = :navn")
+})
 public class Student implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -40,59 +42,72 @@ public class Student implements Serializable {
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "student")
     private FørsteRunde førsteRunde;
 
-    public Student() {
+    public Student()
+    {
     }
 
-    public Student(Integer id) {
+    public Student(Integer id)
+    {
         this.id = id;
     }
 
-    public Integer getId() {
+    public Integer getId()
+    {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Integer id)
+    {
         this.id = id;
     }
 
-    public String getNavn() {
+    public String getNavn()
+    {
         return navn;
     }
 
-    public void setNavn(String navn) {
+    public void setNavn(String navn)
+    {
         this.navn = navn;
     }
 
-    public FørsteRunde getFørsteRunde() {
+    public FørsteRunde getFørsteRunde()
+    {
         return førsteRunde;
     }
 
-    public void setFørsteRunde(FørsteRunde førsteRunde) {
+    public void setFørsteRunde(FørsteRunde førsteRunde)
+    {
         this.førsteRunde = førsteRunde;
     }
 
     @Override
-    public int hashCode() {
+    public int hashCode()
+    {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
+    public boolean equals(Object object)
+    {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Student)) {
+        if (!(object instanceof Student))
+        {
             return false;
         }
         Student other = (Student) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)))
+        {
             return false;
         }
         return true;
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "entity.Student[ id=" + id + " ]";
     }
     

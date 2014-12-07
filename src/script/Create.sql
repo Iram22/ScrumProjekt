@@ -1,5 +1,4 @@
-DROP TABLE pulje_A;
-DROP TABLE pulje_B;
+DROP TABLE puljer;
 DROP TABLE første_runde;
 DROP TABLE student;
 DROP TABLE valgfag;
@@ -23,15 +22,11 @@ Create TABLE første_runde(
     
 );
 
-Create TABLE pulje_A(
- valgfagId INTEGER NOT NULL REFERENCES valgfag(id),
- PRIMARY KEY(valgfagId)
+Create TABLE puljer(
+ valgfagId INTEGER REFERENCES valgfag(id) NOT NULL PRIMARY KEY,
+ pulje varchar(20)
 );
 
-Create TABLE pulje_B(
- valgfagId INTEGER NOT NULL REFERENCES valgfag(id),
-PRIMARY KEY(valgfagId)
-);
 
 
 
