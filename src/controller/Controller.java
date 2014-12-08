@@ -88,12 +88,15 @@ public class Controller {
          em = Persistence.createEntityManagerFactory("XPScrumProjektPU").createEntityManager();
           Query query = em.createNamedQuery("F\u00f8rsteRunde.findAll");
           List<FørsteRunde> students = query.getResultList();
+          System.out.println("student "+ students);
           Object[] puljeA = pulje_A.toArray();
+          System.out.println(puljeA);
           Object[] puljeB = pulje_B.toArray();
+          System.out.println(puljeB);
           
         final int MAX_UTILFREDSHED = 4;
         
-        List utilfredseStudenter = null;
+        List utilfredseStudenter = new ArrayList();
         FørsteRunde runde1;
         for(FørsteRunde stud : students){
             runde1 = stud.getStudent().getFørsteRunde();
@@ -199,7 +202,8 @@ public class Controller {
          boolean erIpuljen = false;
         for (int i = 0; i < pulje.length; i++)
         {
-            if (fag.compareTo(((Valgfag)pulje[i]).getFag()) == 0)
+            Valgfag fagIpuljen = ((ValgfagResultat)pulje[i]).getFag();
+            if (fag.compareTo(fagIpuljen.getFag()) == 0)
             {
                 erIpuljen = true;
             }else{

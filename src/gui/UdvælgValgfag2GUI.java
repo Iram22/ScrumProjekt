@@ -275,7 +275,9 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonGemActionPerformed
 
     private void jButtonBeregnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBeregnActionPerformed
-       List utilfredseStudenter = null;
+      jTextAreaTilfredshed.setText("");
+        
+       List utilfredseStudenter = new ArrayList();
        utilfredseStudenter = controller.beregnTilfredshed(modelPuljeA, modelPuljeB);
        Collections.sort(utilfredseStudenter);
        Collections.reverse(utilfredseStudenter);
