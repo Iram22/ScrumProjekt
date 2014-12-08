@@ -28,9 +28,9 @@ public class Controller3 {
      
      
      /**
-      * Beregner student tilfredshed ud fra deres valg og deres pladsering i begge pulje
-      * jo flere valg eksistere i samme pulje jo mere utilfreds studenten er
-      * metoden tjekker begge puljer for valgets eksistense, hvis valget eksistere i ingen af puljer
+      * Beregner student tilfredshed ud fra deres valg og deres pladsering i begge puljer,
+      * jo flere valg som eksistere i samme pulje jo mere utilfreds studenten er.
+      * Metoden tjekker begge puljer for valgets eksistense, hvis valget eksistere i ingen af puljer
       * stiger utilfredshed også
       **/
      public HashMap beregnTilfredshed(DefaultListModel pulje_A, DefaultListModel pulje_B){

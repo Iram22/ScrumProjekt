@@ -7,7 +7,11 @@ package gui;
 
 import controller.Controller;
 import controller.Controller2;
+import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 import javax.swing.DefaultListModel;
 
 /**
@@ -39,8 +43,7 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jListValgteValgfag = new javax.swing.JList();
@@ -63,8 +66,7 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jListValgteValgfag.setModel(new javax.swing.AbstractListModel()
-        {
+        jListValgteValgfag.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
@@ -73,16 +75,14 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
 
         jLabel1.setText("Valgte valgfag");
 
-        jListPuljeA.setModel(new javax.swing.AbstractListModel()
-        {
+        jListPuljeA.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
         jScrollPane2.setViewportView(jListPuljeA);
 
-        jListPuljeB.setModel(new javax.swing.AbstractListModel()
-        {
+        jListPuljeB.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
@@ -94,37 +94,29 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
         jLabel3.setText("Pulje B");
 
         jButtonTilAPulje.setText(">> Pulje A");
-        jButtonTilAPulje.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jButtonTilAPulje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonTilAPuljeActionPerformed(evt);
             }
         });
 
         jButtonTilPuljeB.setText(">> Pulje B");
-        jButtonTilPuljeB.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jButtonTilPuljeB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonTilPuljeBActionPerformed(evt);
             }
         });
 
         jButtonATilB.setText(">");
-        jButtonATilB.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jButtonATilB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonATilBActionPerformed(evt);
             }
         });
 
         jButtonBTilA.setText("<");
-        jButtonBTilA.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jButtonBTilA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonBTilAActionPerformed(evt);
             }
         });
@@ -134,21 +126,22 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
         jScrollPane4.setViewportView(jTextAreaTilfredshed);
 
         jButtonBeregn.setText("Beregn Utilfredshed");
+        jButtonBeregn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBeregnActionPerformed(evt);
+            }
+        });
 
         jButtonBackTilValgfag.setText("<<");
-        jButtonBackTilValgfag.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jButtonBackTilValgfag.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonBackTilValgfagActionPerformed(evt);
             }
         });
 
         jButtonGem.setText("Gem");
-        jButtonGem.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jButtonGem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonGemActionPerformed(evt);
             }
         });
@@ -270,6 +263,27 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
     {//GEN-HEADEREND:event_jButtonGemActionPerformed
         controller.gemIDB(modelPuljeA, modelPuljeB);
     }//GEN-LAST:event_jButtonGemActionPerformed
+
+    private void jButtonBeregnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBeregnActionPerformed
+       List utilfredseStudenter = null;
+       utilfredseStudenter = controller.beregnTilfredshed(modelPuljeA, modelPuljeB);
+       Collections.sort(utilfredseStudenter);
+       Collections.reverse(utilfredseStudenter);
+        for (int i = 0; i < utilfredseStudenter.size(); i++) {
+            if(Integer.parseInt(((String)utilfredseStudenter.get(i)).split(" ")[0]) == 4){
+            jTextAreaTilfredshed.setForeground(Color.red);
+            }
+            if(Integer.parseInt(((String)utilfredseStudenter.get(i)).split(" ")[0]) == 2 || 
+               Integer.parseInt(((String)utilfredseStudenter.get(i)).split(" ")[0]) == 3){
+                jTextAreaTilfredshed.setForeground(Color.orange);
+            }
+            jTextAreaTilfredshed.append(utilfredseStudenter.get(i)+ "\n");
+            
+        }
+       
+       
+       
+    }//GEN-LAST:event_jButtonBeregnActionPerformed
 
     private void forberedLister(){          
         modelValgFag = new DefaultListModel();
