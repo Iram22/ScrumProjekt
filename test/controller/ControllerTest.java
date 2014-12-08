@@ -38,11 +38,46 @@ public class ControllerTest {
     @BeforeClass
     public static void setUpClass()
     {
+         EntityManager em;
+        em = Persistence.createEntityManagerFactory("XPScrumProjektPU").createEntityManager();
+         em.getTransaction().begin();
+        try
+        {
+           Query q = em.createNativeQuery("delete from puljer");
+        q.executeUpdate();
+        
+          em.getTransaction().commit();
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+            em.getTransaction().rollback();
+        } finally
+        {
+            em.close();
+        }
     }
 
     @AfterClass
     public static void tearDownClass()
     {
+        EntityManager em;
+        
+        em = Persistence.createEntityManagerFactory("XPScrumProjektPU").createEntityManager();
+         em.getTransaction().begin();
+        try
+        {
+        Query q = em.createNativeQuery("delete from puljer");
+        q.executeUpdate();
+          em.getTransaction().commit();
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+            em.getTransaction().rollback();
+        } finally
+        {
+            em.close();
+        }
+        
     }
 
     @Before
@@ -59,7 +94,7 @@ public class ControllerTest {
         if(result != null){
         try
         {
-           
+            
             em.remove(result);
             em.getTransaction().commit();
             
@@ -77,7 +112,8 @@ public class ControllerTest {
         try
         {
         
-        em.createNativeQuery("delete from puljer;");
+        Query q = em.createNativeQuery("delete from puljer");
+        q.executeUpdate();
             em.getTransaction().commit();
         } catch (Exception e)
         {
@@ -98,7 +134,8 @@ public class ControllerTest {
          em.getTransaction().begin();
         try
         {
-        em.createNativeQuery("delete from puljer;");
+        Query q = em.createNativeQuery("delete from puljer");
+        q.executeUpdate();
           em.getTransaction().commit();
         } catch (Exception e)
         {
@@ -252,26 +289,25 @@ public class ControllerTest {
         }
         
         
-        
         assertTrue(expResult);
         
     }
 
-//    /**
-//     * Test of beregnTilfredshed method, of class Controller.
-//     */
-//    @Test
-//    public void testBeregnTilfredshed() {
-//        System.out.println("beregnTilfredshed");
-//        DefaultListModel pulje_A = null;
-//        DefaultListModel pulje_B = null;
-//        Controller instance = new Controller();
-//        List expResult = null;
-//        List result = instance.beregnTilfredshed(pulje_A, pulje_B);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+    /**
+     * Test of beregnTilfredshed method, of class Controller.
+     */
+    @Test
+    public void testBeregnTilfredshed() {
+        System.out.println("beregnTilfredshed");
+        DefaultListModel pulje_A = null;
+        DefaultListModel pulje_B = null;
+        Controller instance = new Controller();
+        List expResult = null;
+        List result = instance.beregnTilfredshed(pulje_A, pulje_B);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
 
     /**
      * Test of persist method, of class Controller.
