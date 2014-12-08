@@ -5,7 +5,9 @@
  */
 package controller;
 
+import dto.ValgfagResultat;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.DefaultListModel;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -61,5 +63,62 @@ public class ControllerTest {
         boolean expResult = true;
         boolean result = instance.flytFag(valgteFag, modelFra, modelTil);
         assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of visResultat method, of class Controller.
+     */
+    @Test
+    public void testVisResultat() {
+        System.out.println("visResultat");
+        Controller instance = new Controller();
+        ArrayList<ValgfagResultat> expResult = null;
+        ArrayList<ValgfagResultat> result = instance.visResultat();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of gemIDB method, of class Controller.
+     */
+    @Test
+    public void testGemIDB() {
+        System.out.println("gemIDB");
+        DefaultListModel puljeA = null;
+        DefaultListModel puljeB = null;
+        Controller instance = new Controller();
+        instance.gemIDB(puljeA, puljeB);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of beregnTilfredshed method, of class Controller.
+     */
+    @Test
+    public void testBeregnTilfredshed() {
+        System.out.println("beregnTilfredshed");
+        DefaultListModel pulje_A = null;
+        DefaultListModel pulje_B = null;
+        Controller instance = new Controller();
+        List expResult = null;
+        List result = instance.beregnTilfredshed(pulje_A, pulje_B);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of persist method, of class Controller.
+     */
+    @Test
+    public void testPersist() {
+        System.out.println("persist");
+        Object object = null;
+        Controller instance = new Controller();
+        instance.persist(object);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 }

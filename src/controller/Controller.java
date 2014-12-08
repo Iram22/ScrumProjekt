@@ -11,6 +11,7 @@ import entity.Puljer;
 import entity.Student;
 import entity.Valgfag;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.TreeMap;
@@ -43,6 +44,35 @@ public class Controller {
 
         return fundet;
     }
+    
+    public ArrayList<ValgfagResultat> visResultat()
+    {
+       em = Persistence.createEntityManagerFactory("XPScrumProjektPU").createEntityManager();
+       
+       if(em == null)
+       {
+           System.out.println("i am null");
+       }
+
+        Query query = em.createNamedQuery("Valgfag.findAll");
+        Query query2 = em.createNamedQuery("FørsteRunde.findCount1");
+        Query query3 = em.createNamedQuery("FørsteRunde.findCount2");
+        ArrayList<ValgfagResultat> resultater = new ArrayList<>();
+        Collection<Valgfag> valgfag = query.getResultList();
+        
+        for(Valgfag v : valgfag)
+        {
+            query2.setParameter("førstePrioriteta", v);
+            query3.setParameter("andenPrioriteta", v);
+            Collection count1 = query2.getResultList();
+            Collection count2 = query3.getResultList();
+            ValgfagResultat resultat = new ValgfagResultat(v, Integer.parseInt(count1.toArray()[0] + ""), Integer.parseInt(count2.toArray()[0] + ""));
+            resultater.add(resultat);
+
+        }
+        return resultater;
+    }
+
 
     public void gemIDB(DefaultListModel puljeA, DefaultListModel puljeB)
     {
@@ -58,24 +88,7 @@ public class Controller {
         }
     }
 
-    public void persist(Object object)
-    {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("XPScrumProjektPU");
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        try
-        {
-            em.persist(object);
-            em.getTransaction().commit();
-        } catch (Exception e)
-        {
-            e.printStackTrace();
-            em.getTransaction().rollback();
-        } finally
-        {
-            em.close();
-        }
-    }
+   
     
     /**
       * Beregner student tilfredshed ud fra deres valg og deres pladsering i begge puljer,
@@ -197,7 +210,6 @@ public class Controller {
     }
     
 
-    
     private boolean erIpuljen(String fag, Object[] pulje){
          boolean erIpuljen = false;
         for (int i = 0; i < pulje.length; i++)
@@ -214,5 +226,23 @@ public class Controller {
         return erIpuljen;
     }
     
+     public void persist(Object object)
+    {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("XPScrumProjektPU");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        try
+        {
+            em.persist(object);
+            em.getTransaction().commit();
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+            em.getTransaction().rollback();
+        } finally
+        {
+            em.close();
+        }
+    }
     
 }
