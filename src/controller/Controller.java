@@ -87,7 +87,7 @@ public class Controller {
           
          em = Persistence.createEntityManagerFactory("XPScrumProjektPU").createEntityManager();
           Query query = em.createNamedQuery("F\u00f8rsteRunde.findAll");
-          List<Student> students = query.getResultList();
+          List<FørsteRunde> students = query.getResultList();
           Object[] puljeA = pulje_A.toArray();
           Object[] puljeB = pulje_B.toArray();
           
@@ -95,8 +95,8 @@ public class Controller {
         
         List utilfredseStudenter = null;
         FørsteRunde runde1;
-        for(Student stud : students){
-            runde1 = stud.getFørsteRunde();
+        for(FørsteRunde stud : students){
+            runde1 = stud.getStudent().getFørsteRunde();
             int utilfredshedsGrad = 0;
             int valgIpuljeA = 0;
             int valgIpuljeB = 0;
@@ -179,10 +179,10 @@ public class Controller {
                
             if(utilfredshedsGrad > 2)
             {
-                String result = utilfredshedsGrad +" "+stud.getId() +" "+ stud.getFørsteRunde().getFørstePrioriteta().getFag() +" "+ 
-                                                   stud.getFørsteRunde().getFørstePrioritetb().getFag() +" "+
-                                                   stud.getFørsteRunde().getAndenPrioriteta().getFag() +" "+
-                                                   stud.getFørsteRunde().getAndenPrioritetb().getFag();
+                String result = utilfredshedsGrad +" "+stud.getStudent().getId() +" "+ stud.getFørstePrioriteta().getFag() +" "+ 
+                                                   stud.getFørstePrioritetb().getFag() +" "+
+                                                   stud.getAndenPrioriteta().getFag() +" "+
+                                                   stud.getAndenPrioritetb().getFag();
                 utilfredseStudenter.add(result); // List kan sorteres ved Collections.sort den og reverse
             }   
                
