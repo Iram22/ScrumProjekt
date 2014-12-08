@@ -23,3 +23,17 @@ INSERT into første_runde values (3, 1, 3, 5, 2);
 INSERT into første_runde values (4, 3, 4, 5, 1);
 INSERT into første_runde values (5, 2, 1, 4, 5);
 
+
+Create TABLE test_puljer(
+       valgfagId INTEGER REFERENCES valgfag(id) NOT NULL PRIMARY KEY,
+       pulje varchar(20));
+
+INSERT into test_puljer values(1, 'a');
+INSERT into test_puljer values(2, 'a');
+INSERT into test_puljer values(3, 'b');
+INSERT into test_puljer values(4, 'b');
+INSERT into test_puljer values(5, 'a');
+
+select * from test_puljer
+
+drop table test_puljer
