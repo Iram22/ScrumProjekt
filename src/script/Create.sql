@@ -23,14 +23,14 @@ Create TABLE første_runde(
     anden_prioritetB INTEGER REFERENCES valgfag(id)
     
 );
-
+drop table puljer
 Create TABLE puljer(
- valgfagId INTEGER REFERENCES valgfag(id) NOT NULL PRIMARY KEY,
+ valgfagId INTEGER REFERENCES valgfag(id) NOT NULL primary key,
  pulje varchar(20)
 );
 
-
-
+select * from puljer
+delete from puljer
 
 
 

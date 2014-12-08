@@ -54,13 +54,15 @@ public class ControllerTest {
         em = Persistence.createEntityManagerFactory("XPScrumProjektPU").createEntityManager();
         int stud_id = 999;
         Student result = em.find(Student.class, stud_id);
-        try{
+      
         em.getTransaction().begin();
+        if(result != null){
         try
         {
-            
+           
             em.remove(result);
             em.getTransaction().commit();
+            
         } catch (Exception e)
         {
             e.printStackTrace();
@@ -70,12 +72,12 @@ public class ControllerTest {
             em.close();
         }
         
+         em = Persistence.createEntityManagerFactory("XPScrumProjektPU").createEntityManager();
          em.getTransaction().begin();
         try
         {
-        em.createNativeQuery("Create TABLE test_puljer(" +
-                             " valgfagId INTEGER REFERENCES valgfag(id) NOT NULL PRIMARY KEY," +
-                             " pulje varchar(20));");
+        
+        em.createNativeQuery("delete from puljer;");
             em.getTransaction().commit();
         } catch (Exception e)
         {
@@ -85,7 +87,7 @@ public class ControllerTest {
         {
             em.close();
         }
-        }catch (NullPointerException e){}
+        }
     }
 
     @After
@@ -96,7 +98,7 @@ public class ControllerTest {
          em.getTransaction().begin();
         try
         {
-        em.createNativeQuery("drop TABLE test_puljer");
+        em.createNativeQuery("delete from puljer;");
           em.getTransaction().commit();
         } catch (Exception e)
         {
@@ -182,35 +184,45 @@ public class ControllerTest {
      */
     @Test
     public void testGemPuljerIdb() {
-        System.out.println("gemIDB");
+        System.out.println("gemPuljerIdb");
         DefaultListModel puljeA = new DefaultListModel();
         DefaultListModel puljeB = new DefaultListModel();
+        Collection <Puljer> expPulje = new ArrayList();
         
         Valgfag vf1 = new Valgfag(1);
         vf1.setFag("C#");
         ValgfagResultat r1 = new ValgfagResultat(vf1, 2, 2);
         puljeA.addElement(r1);
+        Puljer p_a1 = new Puljer(vf1.getId(), "a");
+        expPulje.add(p_a1);
         
         Valgfag vf2 = new Valgfag(2);
         vf2.setFag("Python");
         ValgfagResultat r2 = new ValgfagResultat(vf2, 2, 2);
         puljeA.addElement(r2);
+        Puljer p_a2 = new Puljer(vf2.getId(), "a");
+        expPulje.add(p_a2);
         
         Valgfag vf3 = new Valgfag(3);
         vf3.setFag("Haskel");
         ValgfagResultat r3 = new ValgfagResultat(vf3, 2, 2);
         puljeB.addElement(r3);
+        Puljer p_b1 = new Puljer(vf3.getId(), "b");
+        expPulje.add(p_b1);
         
         Valgfag vf4 = new Valgfag(4);
         vf4.setFag("Gaming");
         ValgfagResultat r4 = new ValgfagResultat(vf4, 1, 2);
         puljeB.addElement(r4);
+        Puljer p_b2 = new Puljer(vf4.getId(), "b");
+        expPulje.add(p_b2);
         
         Valgfag vf5 = new Valgfag(5);
         vf5.setFag("Android");
         ValgfagResultat r5 = new ValgfagResultat(vf5, 3, 2);
         puljeA.addElement(r5);
-        
+        Puljer p_a3 = new Puljer(vf5.getId(), "a");
+        expPulje.add(p_a3);
         
         Controller instance = new Controller();
         instance.gemPuljerIdb(puljeA, puljeB);
@@ -221,6 +233,23 @@ public class ControllerTest {
         Query q = em.createNamedQuery("Puljer.findAll");
         Collection<Puljer> result = q.getResultList();
         boolean expResult = false;
+        Object[] resultat = result.toArray();
+        Object[] expResultat = expPulje.toArray();
+        
+        if(result.size() == expPulje.size()){
+            for (int i = 0; i < resultat.length ;i++) {
+                    System.out.println(resultat[i]);
+                    System.out.println(expResultat[i]);
+                if(((Puljer)resultat[i]).getValgfagid() == ((Puljer)expResultat[i]).getValgfagid() &&
+                    ((Puljer)resultat[i]).getPulje().compareTo(((Puljer)expResultat[i]).getPulje()) == 0){
+                    System.out.println(resultat[i]);
+                    System.out.println(expResultat[i]);
+                expResult = true;
+            }    
+            }
+            
+            
+        }
         
         
         
