@@ -39,10 +39,24 @@ public class Controller {
         boolean fundet = modelFra.removeElement(valgteFag);
         if (fundet)
         {
-            modelTil.addElement(((ValgfagResultat)valgteFag).getFag());
+            modelTil.addElement(valgteFag);
         }
 
         return fundet;
+    }
+
+    public void gemPuljerIdb(DefaultListModel puljeA, DefaultListModel puljeB)
+    {
+        gemFagIPuljer("a", puljeA.toArray());
+        gemFagIPuljer("b", puljeB.toArray());
+    }
+
+    private void gemFagIPuljer(String puljenavn, Object[] pulje)
+    {
+        for (int i = 0; i < pulje.length; i++)
+        {
+            persist(new Puljer(((ValgfagResultat)pulje[i]).getFag().getId(), puljenavn));
+        }
     }
     
     public ArrayList<ValgfagResultat> visResultat()
@@ -71,21 +85,6 @@ public class Controller {
 
         }
         return resultater;
-    }
-
-
-    public void gemPuljerIdb(DefaultListModel puljeA, DefaultListModel puljeB)
-    {
-        gemFagIPuljer("a", puljeA.toArray());
-        gemFagIPuljer("b", puljeB.toArray());
-    }
-
-    private void gemFagIPuljer(String puljenavn, Object[] pulje)
-    {
-        for (int i = 0; i < pulje.length; i++)
-        {
-            persist(new Puljer(((ValgfagResultat)pulje[i]).getFag().getId(), puljenavn));
-        }
     }
 
    
@@ -210,6 +209,7 @@ public class Controller {
     }
     
 
+    
     private boolean erIpuljen(String fag, Object[] pulje){
          boolean erIpuljen = false;
         for (int i = 0; i < pulje.length; i++)

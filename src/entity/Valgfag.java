@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Iram
+ * @author Chris
  */
 @Entity
 @Table(name = "VALGFAG")
