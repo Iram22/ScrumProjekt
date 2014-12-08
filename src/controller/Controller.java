@@ -88,11 +88,11 @@ public class Controller {
          em = Persistence.createEntityManagerFactory("XPScrumProjektPU").createEntityManager();
           Query query = em.createNamedQuery("F\u00f8rsteRunde.findAll");
           List<FørsteRunde> students = query.getResultList();
-          System.out.println("student "+ students);
+          
           Object[] puljeA = pulje_A.toArray();
-          System.out.println(puljeA);
+          
           Object[] puljeB = pulje_B.toArray();
-          System.out.println(puljeB);
+          
           
         final int MAX_UTILFREDSHED = 4;
         
