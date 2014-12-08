@@ -1,4 +1,6 @@
 DROP TABLE puljer;
+DROP TABLE pulje_A;
+DROP TABLE pulje_B;
 DROP TABLE første_runde;
 DROP TABLE student;
 DROP TABLE valgfag;
