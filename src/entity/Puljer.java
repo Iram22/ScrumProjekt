@@ -20,17 +20,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Ahmed
+ * @author Chris
  */
 @Entity
 @Table(name = "PULJER")
 @XmlRootElement
-@NamedQueries(
-{
+@NamedQueries({
     @NamedQuery(name = "Puljer.findAll", query = "SELECT p FROM Puljer p"),
     @NamedQuery(name = "Puljer.findByValgfagid", query = "SELECT p FROM Puljer p WHERE p.valgfagid = :valgfagid"),
-    @NamedQuery(name = "Puljer.findByPulje", query = "SELECT p FROM Puljer p WHERE p.pulje = :pulje")
-})
+    @NamedQuery(name = "Puljer.findByPulje", query = "SELECT p FROM Puljer p WHERE p.pulje = :pulje")})
 public class Puljer implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -43,78 +41,63 @@ public class Puljer implements Serializable {
     @OneToOne(optional = false)
     private Valgfag valgfag;
 
-    public Puljer()
-    {
+    public Puljer() {
     }
 
-    public Puljer(Integer valgfagid)
-    {
-        this.valgfagid = valgfagid;
-    }
-
-    public Puljer(Integer valgfagid, String pulje)
-    {
+    public Puljer(Integer valgfagid, String pulje){
         this.valgfagid = valgfagid;
         this.pulje = pulje;
     }
+    public Puljer(Integer valgfagid) {
+        this.valgfagid = valgfagid;
+    }
 
-    public Integer getValgfagid()
-    {
+    public Integer getValgfagid() {
         return valgfagid;
     }
 
-    public void setValgfagid(Integer valgfagid)
-    {
+    public void setValgfagid(Integer valgfagid) {
         this.valgfagid = valgfagid;
     }
 
-    public String getPulje()
-    {
+    public String getPulje() {
         return pulje;
     }
 
-    public void setPulje(String pulje)
-    {
+    public void setPulje(String pulje) {
         this.pulje = pulje;
     }
 
-    public Valgfag getValgfag()
-    {
+    public Valgfag getValgfag() {
         return valgfag;
     }
 
-    public void setValgfag(Valgfag valgfag)
-    {
+    public void setValgfag(Valgfag valgfag) {
         this.valgfag = valgfag;
     }
 
     @Override
-    public int hashCode()
-    {
+    public int hashCode() {
         int hash = 0;
         hash += (valgfagid != null ? valgfagid.hashCode() : 0);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object)
-    {
+    public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Puljer))
-        {
+        if (!(object instanceof Puljer)) {
             return false;
         }
         Puljer other = (Puljer) object;
-        if ((this.valgfagid == null && other.valgfagid != null) || (this.valgfagid != null && !this.valgfagid.equals(other.valgfagid)))
-        {
+        if ((this.valgfagid == null && other.valgfagid != null) || (this.valgfagid != null && !this.valgfagid.equals(other.valgfagid))) {
             return false;
         }
         return true;
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "entity.Puljer[ valgfagid=" + valgfagid + " ]";
     }
     
