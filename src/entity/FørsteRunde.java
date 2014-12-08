@@ -28,8 +28,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "F\u00f8rsteRunde.findAll", query = "SELECT f FROM F\u00f8rsteRunde f"),
-    @NamedQuery(name = "F\u00f8rsteRunde.findByStudentid", query = "SELECT f FROM F\u00f8rsteRunde f WHERE f.studentid = :studentid")})
-public class FørsteRunde implements Serializable {
+    @NamedQuery(name = "F\u00f8rsteRunde.findByStudentid", query = "SELECT f FROM F\u00f8rsteRunde f WHERE f.studentid = :studentid"),
+    @NamedQuery(name = "FørsteRunde.findCount1", query = "Select distinct((Select count(r.førstePrioriteta) from F\u00f8rsteRunde r where r.førstePrioriteta = :førstePrioriteta )+ (Select count(r.førstePrioritetb) from F\u00f8rsteRunde r where r.førstePrioritetb = :førstePrioriteta)) from F\u00f8rsteRunde r"),
+    @NamedQuery(name = "FørsteRunde.findCount2", query = "Select distinct((Select count(r.andenPrioriteta) from F\u00f8rsteRunde r where r.andenPrioriteta = :andenPrioriteta )+ (Select count(r.andenPrioritetb) from F\u00f8rsteRunde r where r.andenPrioritetb = :andenPrioriteta)) from F\u00f8rsteRunde r")})
+
+    public class FørsteRunde implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
