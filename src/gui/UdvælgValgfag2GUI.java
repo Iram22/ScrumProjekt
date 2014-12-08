@@ -271,7 +271,7 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
 
     private void jButtonGemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonGemActionPerformed
     {//GEN-HEADEREND:event_jButtonGemActionPerformed
-        controller.gemPuljerIdb(modelPuljeA, modelPuljeB);
+        controller.gemIDB(modelPuljeA, modelPuljeB);
     }//GEN-LAST:event_jButtonGemActionPerformed
 
     private void jButtonBeregnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBeregnActionPerformed

@@ -39,7 +39,7 @@ public class Controller {
         boolean fundet = modelFra.removeElement(valgteFag);
         if (fundet)
         {
-            modelTil.addElement(((ValgfagResultat)valgteFag).getFag());
+            modelTil.addElement(valgteFag);
         }
 
         return fundet;
@@ -74,7 +74,7 @@ public class Controller {
     }
 
 
-    public void gemPuljerIdb(DefaultListModel puljeA, DefaultListModel puljeB)
+    public void gemIDB(DefaultListModel puljeA, DefaultListModel puljeB)
     {
         gemFagIPuljer("a", puljeA.toArray());
         gemFagIPuljer("b", puljeB.toArray());
