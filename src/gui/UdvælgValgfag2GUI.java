@@ -6,7 +6,6 @@
 package gui;
 
 import controller.Controller;
-import controller.Controller2;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
