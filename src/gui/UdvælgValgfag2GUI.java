@@ -8,6 +8,7 @@ package gui;
 import controller.Controller;
 import controller.Controller2;
 import java.awt.Color;
+import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -27,11 +28,13 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
     DefaultListModel modelValgFag;
     DefaultListModel modelPuljeA;
     DefaultListModel modelPuljeB;
-
+    
     public UdvælgValgfag2GUI()
     {
         initComponents();
         controller = new Controller();
+        jTextAreaTilfredshed.setForeground(Color.BLACK);
+        jTextAreaTilfredshed.setText("Student id"+"\t Valg 1a"+"\t Valg 1b"+"\t Valg 2a"+"\t Valg 2b"+ "\t utilfredshed\n" );
         forberedLister();
 
     }
@@ -63,7 +66,7 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
         jButtonBeregn = new javax.swing.JButton();
         jButtonBackTilValgfag = new javax.swing.JButton();
         jButtonGem = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
+        jLabelBesked = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -147,8 +150,8 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel4.setText("jLabel4");
+        jLabelBesked.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabelBesked.setForeground(new java.awt.Color(102, 102, 102));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -192,7 +195,7 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
                                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(16, 16, 16))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabelBesked, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 613, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
@@ -228,9 +231,9 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButtonBeregn)
-                    .addComponent(jLabel4))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButtonBeregn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelBesked, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -238,7 +241,7 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
                 .addContainerGap(61, Short.MAX_VALUE))
         );
 
-        jLabel4.getAccessibleContext().setAccessibleName("jLabelAdvarselBesked");
+        jLabelBesked.getAccessibleContext().setAccessibleName("jLabelBesked");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -281,6 +284,8 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
        utilfredseStudenter = controller.beregnTilfredshed(modelPuljeA, modelPuljeB);
        Collections.sort(utilfredseStudenter);
        Collections.reverse(utilfredseStudenter);
+       
+       
         for (int i = 0; i < utilfredseStudenter.size(); i++) {
             if(Integer.parseInt(((String)utilfredseStudenter.get(i)).split(" ")[0]) == 4){
             jTextAreaTilfredshed.setForeground(Color.red);
@@ -289,10 +294,14 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
                Integer.parseInt(((String)utilfredseStudenter.get(i)).split(" ")[0]) == 3){
                 jTextAreaTilfredshed.setForeground(Color.orange);
             }
-            jTextAreaTilfredshed.append(utilfredseStudenter.get(i)+ "\n");
+            String[] result = ((String)utilfredseStudenter.get(i)).split(" ");
+            String newString =  result[1]+"\t"+  result[2]+"\t"+ result[3]+"\t"+
+                                result[4]+"\t"+  result[5]+"\t"+ result[0];
+                                
+            jTextAreaTilfredshed.append(newString + "\n");
             
         }
-       
+       jLabelBesked.setText("Der er "+ utilfredseStudenter.size() + " ud af "+ controller.getTotalAntalStudenter()+ " studenter som er utilfredse");
        
        
     }//GEN-LAST:event_jButtonBeregnActionPerformed
@@ -305,8 +314,8 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
         jListPuljeA.setModel(modelPuljeA);
         jListPuljeB.setModel(modelPuljeB);
         
-        Controller2 control2 = new Controller2();
-        ArrayList valgfag = control2.visResultat();
+        
+        ArrayList valgfag = controller.visResultat();
         //ArrayList valgfag = controller.hentValgfagFraDB();
         if(valgfag == null)
         {
@@ -372,7 +381,7 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabelBesked;
     private javax.swing.JList jListPuljeA;
     private javax.swing.JList jListPuljeB;
     private javax.swing.JList jListValgteValgfag;

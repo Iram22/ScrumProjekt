@@ -59,6 +59,7 @@ public class Controller {
         }
     }
     
+    
     public ArrayList<ValgfagResultat> visResultat()
     {
        em = Persistence.createEntityManagerFactory("XPScrumProjektPU").createEntityManager();
@@ -224,6 +225,14 @@ public class Controller {
         }
         
         return erIpuljen;
+    }
+    
+    
+    public int getTotalAntalStudenter(){
+        
+       Query q = em.createNamedQuery("Student.findAll");
+       return q.getResultList().size();
+       
     }
     
      public void persist(Object object)
