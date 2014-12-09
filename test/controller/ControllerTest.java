@@ -299,14 +299,53 @@ public class ControllerTest {
     @Test
     public void testBeregnTilfredshed() {
         System.out.println("beregnTilfredshed");
-        DefaultListModel pulje_A = null;
-        DefaultListModel pulje_B = null;
+        DefaultListModel pulje_A = new DefaultListModel();
+        DefaultListModel pulje_B = new DefaultListModel();
+        Collection <Puljer> expPulje = new ArrayList();
+        
+        Valgfag vf1 = new Valgfag(1);
+        vf1.setFag("C#");
+        ValgfagResultat r1 = new ValgfagResultat(vf1, 2, 2);
+        pulje_A.addElement(r1);
+        
+        
+        Valgfag vf2 = new Valgfag(2);
+        vf2.setFag("Python");
+        ValgfagResultat r2 = new ValgfagResultat(vf2, 2, 2);
+        pulje_A.addElement(r2);
+        
+        
+        Valgfag vf3 = new Valgfag(3);
+        vf3.setFag("Haskel");
+        ValgfagResultat r3 = new ValgfagResultat(vf3, 2, 2);
+        pulje_B.addElement(r3);
+        
+        
+        Valgfag vf4 = new Valgfag(4);
+        vf4.setFag("Gaming");
+        ValgfagResultat r4 = new ValgfagResultat(vf4, 1, 2);
+        pulje_B.addElement(r4);
+        
+        
+        Valgfag vf5 = new Valgfag(5);
+        vf5.setFag("Android");
+        ValgfagResultat r5 = new ValgfagResultat(vf5, 3, 2);
+        pulje_A.addElement(r5);
+        
         Controller instance = new Controller();
-        List expResult = null;
+        
         List result = instance.beregnTilfredshed(pulje_A, pulje_B);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        boolean expResult = false;
+        
+        if(result.size() >= 1){
+            if (((String)result.get(0)).split(" ").length >= 5){
+                expResult = true;
+            }
+        }else if (result != null){
+            expResult = true;
+        }
+        
+        assertTrue(expResult);
     }
 
     /**
