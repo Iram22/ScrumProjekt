@@ -32,7 +32,7 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
     {
         initComponents();
         controller = new Controller();
-        jLabelOutputTitles.setText("Student id"+"\t Valg 1a"+"\t Valg 1b"+"\t Valg 2a"+"\t Valg 2b"+ "\t utilfredshed\n" );
+        jLabelOutputTitles.setText(" Student id"+"      Valg 1a"+"        Valg 1b"+"         Valg 2a"+"           Valg 2b"+ "    utilfredshed\n" );
         forberedLister();
 
     }
@@ -300,8 +300,8 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
             if(Integer.parseInt(result[0]) == 2 || 
                Integer.parseInt(result[0]) == 3){
                 jTextAreaTilfredshed.setForeground(Color.orange);
-                newString =  result[1]+"\t"+  result[2]+"\t"+ result[3]+"\t"+
-                             result[4]+"\t"+  result[5]+"\t"+ result[0];
+                newString =  "      "+result[1]+"           "+  result[2]+"       "+ result[3]+"        "+
+                             result[4]+"          "+  result[5]+"         "+ result[0];
             }
             
             
