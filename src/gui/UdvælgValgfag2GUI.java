@@ -32,8 +32,7 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
     {
         initComponents();
         controller = new Controller();
-        jTextAreaTilfredshed.setForeground(Color.BLACK);
-        jTextAreaTilfredshed.setText("Student id"+"\t Valg 1a"+"\t Valg 1b"+"\t Valg 2a"+"\t Valg 2b"+ "\t utilfredshed\n" );
+        
         forberedLister();
 
     }
@@ -284,7 +283,8 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
        Collections.sort(utilfredseStudenter);
        Collections.reverse(utilfredseStudenter);
        
-       
+       jTextAreaTilfredshed.setForeground(Color.BLACK);
+        jTextAreaTilfredshed.setText("Student id"+"\t Valg 1a"+"\t Valg 1b"+"\t Valg 2a"+"\t Valg 2b"+ "\t utilfredshed\n" );
         for (int i = 0; i < utilfredseStudenter.size(); i++) {
             if(Integer.parseInt(((String)utilfredseStudenter.get(i)).split(" ")[0]) == 4){
             jTextAreaTilfredshed.setForeground(Color.red);
@@ -296,7 +296,7 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
             String[] result = ((String)utilfredseStudenter.get(i)).split(" ");
             String newString =  result[1]+"\t"+  result[2]+"\t"+ result[3]+"\t"+
                                 result[4]+"\t"+  result[5]+"\t"+ result[0];
-                                
+                
             jTextAreaTilfredshed.append(newString + "\n");
             
         }

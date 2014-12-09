@@ -30,6 +30,7 @@ import static org.junit.Assert.*;
 public class ControllerTest {
     
     Controller instance;
+    EntityManager em;
 
     public ControllerTest()
     {
@@ -85,7 +86,7 @@ public class ControllerTest {
     {
         instance = new Controller();
         
-        EntityManager em;
+        
         em = Persistence.createEntityManagerFactory("XPScrumProjektPU").createEntityManager();
         int stud_id = 999;
         Student result = em.find(Student.class, stud_id);
@@ -129,7 +130,7 @@ public class ControllerTest {
     @After
     public void tearDown()
     {
-        EntityManager em;
+        
         em = Persistence.createEntityManagerFactory("XPScrumProjektPU").createEntityManager();
          em.getTransaction().begin();
         try
@@ -264,7 +265,6 @@ public class ControllerTest {
         Controller instance = new Controller();
         instance.gemPuljerIdb(puljeA, puljeB);
         
-        EntityManager em;
         em = Persistence.createEntityManagerFactory("XPScrumProjektPU").createEntityManager();
         
         Query q = em.createNamedQuery("Puljer.findAll");
@@ -353,7 +353,7 @@ public class ControllerTest {
      */
     @Test
     public void testPersist() {
-        EntityManager em;
+        
         em = Persistence.createEntityManagerFactory("XPScrumProjektPU").createEntityManager();
         System.out.println("persist");
         int stud_id = 999;
