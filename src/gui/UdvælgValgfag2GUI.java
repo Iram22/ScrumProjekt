@@ -32,7 +32,7 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
     {
         initComponents();
         controller = new Controller();
-        
+        jLabelOutputTitles.setText("Student id"+"\t Valg 1a"+"\t Valg 1b"+"\t Valg 2a"+"\t Valg 2b"+ "\t utilfredshed\n" );
         forberedLister();
 
     }
@@ -65,6 +65,7 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
         jButtonBackTilValgfag = new javax.swing.JButton();
         jButtonGem = new javax.swing.JButton();
         jLabelBesked = new javax.swing.JLabel();
+        jLabelOutputTitles = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -151,13 +152,16 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
         jLabelBesked.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabelBesked.setForeground(new java.awt.Color(102, 102, 102));
 
+        jLabelOutputTitles.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabelOutputTitles.setText("j");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jButtonGem)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -192,9 +196,9 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
                                     .addComponent(jLabel3)
                                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(16, 16, 16))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabelBesked, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 613, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabelBesked, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelOutputTitles, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -232,11 +236,13 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButtonBeregn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabelBesked, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelOutputTitles)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jButtonGem)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addGap(31, 31, 31))
         );
 
         jLabelBesked.getAccessibleContext().setAccessibleName("jLabelBesked");
@@ -283,8 +289,7 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
        Collections.sort(utilfredseStudenter);
        Collections.reverse(utilfredseStudenter);
        String newString = "";
-       jTextAreaTilfredshed.setForeground(Color.BLACK);
-        jTextAreaTilfredshed.setText("Student id"+"\t Valg 1a"+"\t Valg 1b"+"\t Valg 2a"+"\t Valg 2b"+ "\t utilfredshed\n" );
+       
         for (int i = 0; i < utilfredseStudenter.size(); i++) {
             String[] result = ((String)utilfredseStudenter.get(i)).split(" ");
             if(Integer.parseInt(result[0]) == 4){
@@ -385,6 +390,7 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelBesked;
+    private javax.swing.JLabel jLabelOutputTitles;
     private javax.swing.JList jListPuljeA;
     private javax.swing.JList jListPuljeB;
     private javax.swing.JList jListValgteValgfag;
