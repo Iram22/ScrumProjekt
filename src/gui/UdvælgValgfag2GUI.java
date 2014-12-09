@@ -282,20 +282,24 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
        utilfredseStudenter = controller.beregnTilfredshed(modelPuljeA, modelPuljeB);
        Collections.sort(utilfredseStudenter);
        Collections.reverse(utilfredseStudenter);
-       
+       String newString = "";
        jTextAreaTilfredshed.setForeground(Color.BLACK);
         jTextAreaTilfredshed.setText("Student id"+"\t Valg 1a"+"\t Valg 1b"+"\t Valg 2a"+"\t Valg 2b"+ "\t utilfredshed\n" );
         for (int i = 0; i < utilfredseStudenter.size(); i++) {
-            if(Integer.parseInt(((String)utilfredseStudenter.get(i)).split(" ")[0]) == 4){
-            jTextAreaTilfredshed.setForeground(Color.red);
-            }
-            if(Integer.parseInt(((String)utilfredseStudenter.get(i)).split(" ")[0]) == 2 || 
-               Integer.parseInt(((String)utilfredseStudenter.get(i)).split(" ")[0]) == 3){
-                jTextAreaTilfredshed.setForeground(Color.orange);
-            }
             String[] result = ((String)utilfredseStudenter.get(i)).split(" ");
-            String newString =  result[1]+"\t"+  result[2]+"\t"+ result[3]+"\t"+
+            if(Integer.parseInt(result[0]) == 4){
+            jTextAreaTilfredshed.setForeground(Color.red);
+            newString =  result[1]+"\t"+  result[2]+"\t"+ result[3]+"\t"+
                                 result[4]+"\t"+  result[5]+"\t"+ result[0];
+            }
+            if(Integer.parseInt(result[0]) == 2 || 
+               Integer.parseInt(result[0]) == 3){
+                jTextAreaTilfredshed.setForeground(Color.orange);
+                newString =  result[1]+"\t"+  result[2]+"\t"+ result[3]+"\t"+
+                             result[4]+"\t"+  result[5]+"\t"+ result[0];
+            }
+            
+            
                 
             jTextAreaTilfredshed.append(newString + "\n");
             
