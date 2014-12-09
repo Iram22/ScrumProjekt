@@ -27,12 +27,12 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
     DefaultListModel modelValgFag;
     DefaultListModel modelPuljeA;
     DefaultListModel modelPuljeB;
-    
+
     public UdvælgValgfag2GUI()
     {
         initComponents();
         controller = new Controller();
-        jLabelOutputTitles.setText(" Student id"+"      Valg 1a"+"        Valg 1b"+"         Valg 2a"+"           Valg 2b"+ "    utilfredshed\n" );
+        jLabelOutputTitles.setText(" Student id" + "      Valg 1a" + "        Valg 1b" + "         Valg 2a" + "           Valg 2b" + "    utilfredshed\n");
         forberedLister();
 
     }
@@ -251,81 +251,82 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonTilAPuljeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTilAPuljeActionPerformed
-        controller.flytFag(jListValgteValgfag.getSelectedValue(), modelValgFag, modelPuljeA);
+        flytFag(jListValgteValgfag.getSelectedValue(), modelValgFag, modelPuljeA);
     }//GEN-LAST:event_jButtonTilAPuljeActionPerformed
 
     private void jButtonTilPuljeBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTilPuljeBActionPerformed
-        controller.flytFag(jListValgteValgfag.getSelectedValue(), modelValgFag, modelPuljeB);
+        flytFag(jListValgteValgfag.getSelectedValue(), modelValgFag, modelPuljeB);
     }//GEN-LAST:event_jButtonTilPuljeBActionPerformed
 
     private void jButtonATilBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonATilBActionPerformed
-        controller.flytFag(jListPuljeA.getSelectedValue(), modelPuljeA, modelPuljeB);
+        flytFag(jListPuljeA.getSelectedValue(), modelPuljeA, modelPuljeB);
     }//GEN-LAST:event_jButtonATilBActionPerformed
 
     private void jButtonBTilAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBTilAActionPerformed
-        controller.flytFag(jListPuljeB.getSelectedValue(), modelPuljeB, modelPuljeA);
+        flytFag(jListPuljeB.getSelectedValue(), modelPuljeB, modelPuljeA);
     }//GEN-LAST:event_jButtonBTilAActionPerformed
 
     private void jButtonBackTilValgfagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackTilValgfagActionPerformed
         if (jListPuljeB.getSelectedValue() != null)
         {
-            controller.flytFag(jListPuljeB.getSelectedValue(), modelPuljeB, modelValgFag);
+            flytFag(jListPuljeB.getSelectedValue(), modelPuljeB, modelValgFag);
         } else if (jListPuljeA.getSelectedValue() != null)
         {
-            controller.flytFag(jListPuljeA.getSelectedValue(), modelPuljeA, modelValgFag);
+            flytFag(jListPuljeA.getSelectedValue(), modelPuljeA, modelValgFag);
         }
     }//GEN-LAST:event_jButtonBackTilValgfagActionPerformed
 
     private void jButtonGemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonGemActionPerformed
     {//GEN-HEADEREND:event_jButtonGemActionPerformed
-        controller.gemPuljerIdb(modelPuljeA, modelPuljeB);
+        controller.gemPuljerIdb(modelPuljeA.toArray(), modelPuljeB.toArray());
     }//GEN-LAST:event_jButtonGemActionPerformed
 
     private void jButtonBeregnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBeregnActionPerformed
-      jTextAreaTilfredshed.setText("");
-        
-       List utilfredseStudenter = new ArrayList();
-       utilfredseStudenter = controller.beregnTilfredshed(modelPuljeA, modelPuljeB);
-       Collections.sort(utilfredseStudenter);
-       Collections.reverse(utilfredseStudenter);
-       String newString = "";
-       
-        for (int i = 0; i < utilfredseStudenter.size(); i++) {
-            String[] result = ((String)utilfredseStudenter.get(i)).split(" ");
-            if(Integer.parseInt(result[0]) == 4){
-            jTextAreaTilfredshed.setForeground(Color.red);
-            newString =  result[1]+"\t"+  result[2]+"\t"+ result[3]+"\t"+
-                                result[4]+"\t"+  result[5]+"\t"+ result[0];
+        jTextAreaTilfredshed.setText("");
+
+        List utilfredseStudenter = new ArrayList();
+        utilfredseStudenter = controller.beregnTilfredshed(modelPuljeA, modelPuljeB);
+        Collections.sort(utilfredseStudenter);
+        Collections.reverse(utilfredseStudenter);
+        String newString = "";
+
+        for (int i = 0; i < utilfredseStudenter.size(); i++)
+        {
+            String[] result = ((String) utilfredseStudenter.get(i)).split(" ");
+            if (Integer.parseInt(result[0]) == 4)
+            {
+                jTextAreaTilfredshed.setForeground(Color.red);
+                newString = result[1] + "\t" + result[2] + "\t" + result[3] + "\t"
+                        + result[4] + "\t" + result[5] + "\t" + result[0];
             }
-            if(Integer.parseInt(result[0]) == 2 || 
-               Integer.parseInt(result[0]) == 3){
+            if (Integer.parseInt(result[0]) == 2
+                    || Integer.parseInt(result[0]) == 3)
+            {
                 jTextAreaTilfredshed.setForeground(Color.orange);
-                newString =  "      "+result[1]+"           "+  result[2]+"       "+ result[3]+"        "+
-                             result[4]+"          "+  result[5]+"         "+ result[0];
+                newString = "      " + result[1] + "           " + result[2] + "       " + result[3] + "        "
+                        + result[4] + "          " + result[5] + "         " + result[0];
             }
-            
-            
-                
+
             jTextAreaTilfredshed.append(newString + "\n");
-            
+
         }
-       jLabelBesked.setText("Der er "+ utilfredseStudenter.size() + " ud af "+ controller.getTotalAntalStudenter()+ " studenter som er utilfredse");
-       
-       
+        jLabelBesked.setText("Der er " + utilfredseStudenter.size() + " ud af " + controller.getTotalAntalStudenter() + " studenter som er utilfredse");
+
+
     }//GEN-LAST:event_jButtonBeregnActionPerformed
 
-    private void forberedLister(){          
+    private void forberedLister()
+    {
         modelValgFag = new DefaultListModel();
         modelPuljeA = new DefaultListModel();
         modelPuljeB = new DefaultListModel();
         jListValgteValgfag.setModel(modelValgFag);
         jListPuljeA.setModel(modelPuljeA);
         jListPuljeB.setModel(modelPuljeB);
-        
-        
+
         ArrayList valgfag = controller.visResultat();
         //ArrayList valgfag = controller.hentValgfagFraDB();
-        if(valgfag == null)
+        if (valgfag == null)
         {
             System.out.println("Hej");
         }
@@ -334,6 +335,18 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
             modelValgFag.addElement(fag);
         }
     }
+
+    private boolean flytFag(Object valgteFag, DefaultListModel modelFra, DefaultListModel modelTil)
+    {
+        boolean fundet = modelFra.removeElement(valgteFag);
+        if (fundet)
+        {
+            modelTil.addElement(valgteFag);
+        }
+
+        return fundet;
+    }
+
     /**
      * @param args the command line arguments
      */

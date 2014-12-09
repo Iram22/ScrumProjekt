@@ -34,21 +34,10 @@ public class Controller {
         em = Persistence.createEntityManagerFactory("XPScrumProjektPU").createEntityManager();
     }
 
-    public boolean flytFag(Object valgteFag, DefaultListModel modelFra, DefaultListModel modelTil)
+    public void gemPuljerIdb(Object[] puljeA, Object[] puljeB)
     {
-        boolean fundet = modelFra.removeElement(valgteFag);
-        if (fundet)
-        {
-            modelTil.addElement(valgteFag);
-        }
-
-        return fundet;
-    }
-
-    public void gemPuljerIdb(DefaultListModel puljeA, DefaultListModel puljeB)
-    {
-        gemFagIPuljer("a", puljeA.toArray());
-        gemFagIPuljer("b", puljeB.toArray());
+        gemFagIPuljer("a", puljeA);
+        gemFagIPuljer("b", puljeB);
     }
 
     private void gemFagIPuljer(String puljenavn, Object[] pulje)
