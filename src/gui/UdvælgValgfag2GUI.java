@@ -9,6 +9,7 @@ import controller.Controller;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -285,7 +286,7 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
         jTextAreaTilfredshed.setText("");
 
         List utilfredseStudenter = new ArrayList();
-        utilfredseStudenter = controller.beregnTilfredshed(modelPuljeA, modelPuljeB);
+        utilfredseStudenter = controller.beregnTilfredshed(modelPuljeA.toArray(), modelPuljeB.toArray());
         Collections.sort(utilfredseStudenter);
         Collections.reverse(utilfredseStudenter);
         String newString = "";
@@ -295,19 +296,22 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
             String[] result = ((String) utilfredseStudenter.get(i)).split(" ");
             if (Integer.parseInt(result[0]) == 4)
             {
-                jTextAreaTilfredshed.setForeground(Color.red);
+                
                 newString = result[1] + "\t" + result[2] + "\t" + result[3] + "\t"
                         + result[4] + "\t" + result[5] + "\t" + result[0];
+                
+                jTextAreaTilfredshed.append(newString + "\n");
             }
             if (Integer.parseInt(result[0]) == 2
                     || Integer.parseInt(result[0]) == 3)
             {
-                jTextAreaTilfredshed.setForeground(Color.orange);
+                
                 newString = "      " + result[1] + "           " + result[2] + "       " + result[3] + "        "
                         + result[4] + "          " + result[5] + "         " + result[0];
+                jTextAreaTilfredshed.append(newString + "\n");
             }
 
-            jTextAreaTilfredshed.append(newString + "\n");
+            
 
         }
         jLabelBesked.setText("Der er " + utilfredseStudenter.size() + " ud af " + controller.getTotalAntalStudenter() + " studenter som er utilfredse");

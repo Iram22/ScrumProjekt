@@ -85,15 +85,15 @@ public class Controller {
       * Metoden tjekker begge puljer for valgets eksistense, hvis valget eksistere i ingen af puljer
       * stiger utilfredshed også
       **/
-    public List beregnTilfredshed(DefaultListModel pulje_A, DefaultListModel pulje_B){
+    public List beregnTilfredshed(Object[] puljeA, Object[] puljeB){
           
          em = Persistence.createEntityManagerFactory("XPScrumProjektPU").createEntityManager();
           Query query = em.createNamedQuery("F\u00f8rsteRunde.findAll");
           List<FørsteRunde> students = query.getResultList();
           
-          Object[] puljeA = pulje_A.toArray();
-          
-          Object[] puljeB = pulje_B.toArray();
+//          Object[] puljeA = pulje_A.toArray();
+//          
+//          Object[] puljeB = pulje_B.toArray();
           
           
         final int MAX_UTILFREDSHED = 4;
@@ -205,7 +205,7 @@ public class Controller {
         for (int i = 0; i < pulje.length; i++)
         {
             Valgfag fagIpuljen = ((ValgfagResultat)pulje[i]).getFag();
-            if (fag.compareTo(fagIpuljen.getFag()) == 0)
+            if (pulje[i] != null && fag.compareTo(fagIpuljen.getFag()) == 0)
             {
                 erIpuljen = true;
             }else{
