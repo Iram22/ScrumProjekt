@@ -184,7 +184,7 @@ public class Controller {
                
             if(utilfredshedsGrad > 2)
             {
-                String result = utilfredshedsGrad +" "+stud.getStudent().getId() +" "+ stud.getFørstePrioriteta().getFag() +" "+ 
+                String result = utilfredshedsGrad +" "+stud.getStudent().getNavn() +" "+ stud.getFørstePrioriteta().getFag() +" "+ 
                                                    stud.getFørstePrioritetb().getFag() +" "+
                                                    stud.getAndenPrioriteta().getFag() +" "+
                                                    stud.getAndenPrioritetb().getFag();

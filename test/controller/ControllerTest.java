@@ -323,7 +323,7 @@ public class ControllerTest {
             if (((String)result.get(0)).split(" ").length >= 5){
                 expResult = true;
             }
-        }else if (result != null){
+        }else if (result != null){ // hvis der er ingen utilfredse studenter
             expResult = true;
         }
         
