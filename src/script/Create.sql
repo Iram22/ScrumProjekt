@@ -35,4 +35,4 @@ Create Table udvalgtefag1runde(
 
 
 
-  
+  select * from puljer

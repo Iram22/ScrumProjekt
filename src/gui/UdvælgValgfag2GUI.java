@@ -279,7 +279,19 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
 
     private void jButtonGemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonGemActionPerformed
     {//GEN-HEADEREND:event_jButtonGemActionPerformed
-        controller.gemPuljerIdb(modelPuljeA.toArray(), modelPuljeB.toArray());
+        
+        
+        try{
+         controller.gemPuljerIdb(modelPuljeA.toArray(), modelPuljeB.toArray());
+         jLabelBesked.setText("Dine Puljer er nu gemt");
+        
+        }catch (Exception e){
+            jLabelBesked.setForeground(Color.red);
+            jLabelBesked.setText("error dine puljer kunne ikke gemmes!");
+        }
+        
+        
+       
     }//GEN-LAST:event_jButtonGemActionPerformed
 
     private void jButtonBeregnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBeregnActionPerformed
