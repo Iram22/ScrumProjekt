@@ -36,16 +36,15 @@ public class Controller {
 
     public void gemPuljerIdb(Object[] puljeA, Object[] puljeB)
     {
+        em.getTransaction().begin();
         try{
-        Query q = em.createNamedQuery("delete from puljer");
+        Query q = em.createNativeQuery("delete from puljer");
         q.executeUpdate();
         }catch(Exception e){
             e.printStackTrace();
             em.getTransaction().rollback();
-        } finally
-        {
-            em.close();
-        }
+        } 
+        
         gemFagIPuljer("a", puljeA);
         gemFagIPuljer("b", puljeB);
     }
