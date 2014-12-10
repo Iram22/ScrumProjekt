@@ -33,7 +33,7 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
     {
         initComponents();
         controller = new Controller();
-        jLabelOutputTitles.setText(" Student id" + "      Valg 1a" + "        Valg 1b" + "         Valg 2a" + "           Valg 2b" + "    utilfredshed\n");
+        jLabelOutputTitles.setText(" Student id" + "    Valg 1a" + "    Valg 1b" + "    Valg 2a" + "    Valg 2b" + "  utilfredshed\n");
         forberedLister();
 
     }
@@ -297,36 +297,19 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
     private void jButtonBeregnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBeregnActionPerformed
         jTextAreaTilfredshed.setText("");
 
-        List utilfredseStudenter = new ArrayList();
-        utilfredseStudenter = controller.beregnTilfredshed(modelPuljeA.toArray(), modelPuljeB.toArray());
-        Collections.sort(utilfredseStudenter);
-        Collections.reverse(utilfredseStudenter);
+        
+        List utilfredseStudenter = controller.beregnTilfredshed(modelPuljeA.toArray(), modelPuljeB.toArray());
         String newString = "";
 
         for (int i = 0; i < utilfredseStudenter.size(); i++)
         {
             String[] result = ((String) utilfredseStudenter.get(i)).split(" ");
-            if (Integer.parseInt(result[0]) == 4)
-            {
-                
-                newString = result[1] + "\t" + result[2] + "\t" + result[3] + "\t"
-                        + result[4] + "\t" + result[5] + "\t" + result[0];
-                
+            newString = "" + result[0] + "     " + result[1] + "        " + result[2] + "        "
+                        + result[3]+ "        "+ result[4]+ "        "+ result[5];
                 jTextAreaTilfredshed.append(newString + "\n");
-            }
-            if (Integer.parseInt(result[0]) == 2
-                    || Integer.parseInt(result[0]) == 3)
-            {
-                
-                newString = "      " + result[1] + "           " + result[2] + "       " + result[3] + "        "
-                        + result[4] + "          " + result[5] + "         " + result[0];
-                jTextAreaTilfredshed.append(newString + "\n");
-            }
-
-            
-
+       
         }
-        jLabelBesked.setText("Der er " + utilfredseStudenter.size() + " ud af " + controller.getTotalAntalStudenter() + " studenter som er utilfredse");
+            jLabelBesked.setText("Der er " + utilfredseStudenter.size() + " ud af " + controller.getTotalAntalStudenter() + " studenter som er utilfredse");
 
 
     }//GEN-LAST:event_jButtonBeregnActionPerformed
