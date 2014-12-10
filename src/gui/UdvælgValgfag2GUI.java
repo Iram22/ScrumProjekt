@@ -14,6 +14,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -24,20 +25,66 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
     /**
      * Creates new form UdvælgValgfag2GUI
      */
-    Controller controller;
-    DefaultListModel modelValgFag;
-    DefaultListModel modelPuljeA;
-    DefaultListModel modelPuljeB;
-
+    private Controller controller;
+    private DefaultListModel modelValgFag;
+    private DefaultListModel modelPuljeA;
+    private DefaultListModel modelPuljeB;
+    private DefaultTableModel UtilfredshedTabelModel;
+    
     public UdvælgValgfag2GUI()
     {
         initComponents();
         controller = new Controller();
-        jLabelOutputTitles.setText(" Student id" + "    Valg 1a" + "    Valg 1b" + "    Valg 2a" + "    Valg 2b" + "  utilfredshed\n");
         forberedLister();
 
     }
-
+    //<editor-fold defaultstate="collapsed" desc=" utilfredshedTabelSetup ">
+    public void utilfredshedTabelSetup(List list){
+    
+    UtilfredshedTabelModel = new DefaultTableModel(
+    new Object [][] {
+        {null, null, null, null, null, null},
+        {null, null, null, null, null, null},
+        {null, null, null, null, null, null},
+        {null, null, null, null, null, null}
+    },
+    new String [] {
+        "Navn", "Valg 1A", "Valg 1B", "Valg 2A", "Valg 2B", "Valg i pulje"
+    })
+    {
+    Class[] types = new Class [] {
+        java.lang.String.class, java.lang.String.class, java.lang.String.class,
+        java.lang.String.class, java.lang.String.class, java.lang.String.class
+    };
+    
+        @Override
+    public Class getColumnClass(int columnIndex) {
+        return types [columnIndex];
+    }
+};
+    try{
+        UtilfredshedTabelModel.setRowCount(0);
+        
+       
+        Object[] RowInfo = new Object[6];
+        for (int i = 0; i < list.size(); i++) {
+            String[] temp = ((String)list.get(i)).split(" ");
+             RowInfo[0] = temp[0];
+             RowInfo[1] = temp[1];
+             RowInfo[2] = temp[2];
+             RowInfo[3] = temp[3];
+             RowInfo[4] = temp[4];
+             RowInfo[5] = temp[5];
+            
+             UtilfredshedTabelModel.insertRow(i, RowInfo);
+            
+        }
+        jTableUtilfredshed.setModel(UtilfredshedTabelModel);     
+        }     
+         catch(NullPointerException bam){
+             System.out.println(bam+"BUM!");
+         }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -60,13 +107,12 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
         jButtonTilPuljeB = new javax.swing.JButton();
         jButtonATilB = new javax.swing.JButton();
         jButtonBTilA = new javax.swing.JButton();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jTextAreaTilfredshed = new javax.swing.JTextArea();
         jButtonBeregn = new javax.swing.JButton();
         jButtonBackTilValgfag = new javax.swing.JButton();
         jButtonGem = new javax.swing.JButton();
         jLabelBesked = new javax.swing.JLabel();
-        jLabelOutputTitles = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTableUtilfredshed = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -125,10 +171,6 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
             }
         });
 
-        jTextAreaTilfredshed.setColumns(20);
-        jTextAreaTilfredshed.setRows(5);
-        jScrollPane4.setViewportView(jTextAreaTilfredshed);
-
         jButtonBeregn.setText("Beregn Utilfredshed");
         jButtonBeregn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -153,54 +195,77 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
         jLabelBesked.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabelBesked.setForeground(new java.awt.Color(102, 102, 102));
 
-        jLabelOutputTitles.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jLabelOutputTitles.setText("j");
+        jTableUtilfredshed.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Navn", "Valg 1A", "Valg 1B", "Valg 2A", "Valg 2B", "Valg i pulje"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTableUtilfredshed.setGridColor(new java.awt.Color(255, 255, 255));
+        jScrollPane5.setViewportView(jTableUtilfredshed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jButtonGem)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButtonBeregn)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonGem))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jButtonBeregn)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel1)
-                                        .addGap(58, 58, 58))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButtonTilAPulje)
-                                    .addComponent(jButtonTilPuljeB))
-                                .addGap(28, 28, 28)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addGap(163, 163, 163))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel1)
+                                                .addGap(58, 58, 58))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(jButtonBTilA, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jButtonATilB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                            .addComponent(jButtonBackTilValgfag))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(16, 16, 16))
-                    .addComponent(jLabelBesked, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelOutputTitles, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(41, Short.MAX_VALUE))
+                                            .addComponent(jButtonTilAPulje)
+                                            .addComponent(jButtonTilPuljeB))
+                                        .addGap(28, 28, 28)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel2)
+                                                .addGap(163, 163, 163))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(10, 10, 10)
+                                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(jButtonBTilA, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(jButtonATilB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                    .addComponent(jButtonBackTilValgfag))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(16, 16, 16))
+                            .addComponent(jLabelBesked, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 634, Short.MAX_VALUE))))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -237,13 +302,11 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButtonBeregn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabelBesked, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabelOutputTitles)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonGem)
-                .addGap(31, 31, 31))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         jLabelBesked.getAccessibleContext().setAccessibleName("jLabelBesked");
@@ -295,20 +358,10 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonGemActionPerformed
 
     private void jButtonBeregnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBeregnActionPerformed
-        jTextAreaTilfredshed.setText("");
-
         
         List utilfredseStudenter = controller.beregnTilfredshed(modelPuljeA.toArray(), modelPuljeB.toArray());
-        String newString = "";
+        utilfredshedTabelSetup(utilfredseStudenter);
 
-        for (int i = 0; i < utilfredseStudenter.size(); i++)
-        {
-            String[] result = ((String) utilfredseStudenter.get(i)).split(" ");
-            newString = "" + result[0] + "     " + result[1] + "        " + result[2] + "        "
-                        + result[3]+ "        "+ result[4]+ "        "+ result[5];
-                jTextAreaTilfredshed.append(newString + "\n");
-       
-        }
             jLabelBesked.setText("Der er " + utilfredseStudenter.size() + " ud af " + controller.getTotalAntalStudenter() + " studenter som er utilfredse");
 
 
@@ -324,12 +377,7 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
         jListPuljeB.setModel(modelPuljeB);
 
         ArrayList valgfag = controller.visResultat();
-        //ArrayList valgfag = controller.hentValgfagFraDB();
-        if (valgfag == null)
-        {
-            System.out.println("Hej");
-        }
-        for (Object fag : valgfag)
+       for (Object fag : valgfag)
         {
             modelValgFag.addElement(fag);
         }
@@ -402,14 +450,13 @@ public class UdvælgValgfag2GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelBesked;
-    private javax.swing.JLabel jLabelOutputTitles;
     private javax.swing.JList jListPuljeA;
     private javax.swing.JList jListPuljeB;
     private javax.swing.JList jListValgteValgfag;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTextArea jTextAreaTilfredshed;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JTable jTableUtilfredshed;
     // End of variables declaration//GEN-END:variables
 }
