@@ -43,7 +43,10 @@ public class Controller {
         }catch(Exception e){
             e.printStackTrace();
             em.getTransaction().rollback();
-        } 
+        }finally
+        {
+            em.close();
+        }
         
         gemFagIPuljer("a", puljeA);
         gemFagIPuljer("b", puljeB);
